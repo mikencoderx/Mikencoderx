@@ -10,5 +10,6 @@ namespace Mikencoderx.Models
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public string Contraseña { get; set; }
+        //esta seccion o objeto es para el loggin
     }
 }
