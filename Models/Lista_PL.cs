@@ -6,7 +6,7 @@ namespace Mikencoderx.Models
     {
         [ForeignKey("Clientes")]
         public int FkClientes { get; set; }
-        public Lenguajes lenguajes { get; set; }
+        public Lenguajes Lenguajes { get; set; }
 
         [ForeignKey("Programadores")]
         public int FkProgramadores { get; set; }

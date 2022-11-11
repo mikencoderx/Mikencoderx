@@ -7,7 +7,7 @@ namespace Mikencoderx.Models
     {
         [Key]
         public int PkMembresias { get; set; } 
-        public bool estado { get; set; }
+        public bool Estado { get; set; }
 
         [ForeignKey("Clientes")]
         public int FkClientes { get; set; }

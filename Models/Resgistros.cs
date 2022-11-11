@@ -7,8 +7,8 @@ namespace Mikencoderx.Models
     {
         [Key]
         public int PkRegistro { get; set; }
-        public string accion { get; set; }
-        public DateTime fecha { get; set; }
+        public string Accion { get; set; }
+        public DateTime Fecha { get; set; }
         [ForeignKey("Administradores")]
         public int FkAdministrador { get; set; }
         public Administradores Administradores { get; set; }
