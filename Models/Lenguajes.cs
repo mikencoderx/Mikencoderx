@@ -9,6 +9,7 @@ namespace Mikencoderx.Models
         public int PkLenguajes { get; set; }
         public string Nombre { get; set; }
         public string URLFoto { get; set; }
+        public int Porcentaje { get; set; }
 
     }
 }

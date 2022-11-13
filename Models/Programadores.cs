@@ -7,6 +7,7 @@ namespace Mikencoderx.Models
         [Key]
         public int PkPrgramadores { get; set; }
         public string Nombre { get; set; }
+        public string URLFoto { get; set; }
         public string Correo { get; set; }
         public string Descrpcion { get; set; }
     }

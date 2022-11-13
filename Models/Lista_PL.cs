@@ -4,8 +4,8 @@ namespace Mikencoderx.Models
 {
     public class Lista_PL
     {
-        [ForeignKey("Clientes")]
-        public int FkClientes { get; set; }
+        [ForeignKey("Lenguajes")]
+        public int FkLenguajes { get; set; }
         public Lenguajes Lenguajes { get; set; }
 
         [ForeignKey("Programadores")]

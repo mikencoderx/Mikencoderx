@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mikencoderx.Models
 {
-    public class Resgistros
+    public class Registros
     {
         [Key]
         public int PkRegistro { get; set; }

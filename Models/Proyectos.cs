@@ -6,7 +6,7 @@ namespace Mikencoderx.Models
     public class Proyectos
     {
         [Key]
-        public int PkProg { get; set; }
+        public int PkProyecto { get; set; }
         public string URLWeb { get; set; }
         public string URLMaster { get; set; }
 

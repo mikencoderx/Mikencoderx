@@ -8,6 +8,6 @@ namespace Mikencoderx.Models
         public int PkPlanes { get; set; }
         public string Tipo { get; set; }
         public double Cantidad { get; set; }
-        public double Estado { get; set; }
+        public bool Estado { get; set; }
     }
 }
