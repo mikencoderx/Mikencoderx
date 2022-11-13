@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mikencoderx.Models
 {
@@ -11,5 +12,8 @@ namespace Mikencoderx.Models
         [ForeignKey("Programadores")]
         public int FkProgramadores { get; set; }
         public Programadores Programadores { get; set; }
+
+        [Key]
+        public int pkLista { get; set; }
     }
 }
