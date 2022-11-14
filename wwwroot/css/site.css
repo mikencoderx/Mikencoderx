@@ -16,3 +16,117 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.h-xl {
+    height: 100vh;
+}
+
+.animation {
+    transition: 1s;
+}
+
+.titulo {
+    font-size: calc(10.375rem + 1.5vw);
+    font-weight: 400;
+}
+
+.bg-morado {
+    background: #5E17EB;
+}
+
+.text-w-100 {
+    font-weight: 700;
+}
+
+.text-amarillo {
+    color: #FFBD59;
+}
+
+.boton {
+    position: relative;
+}
+
+    .boton:hover:after {
+        content: '';
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        z-index: -1;
+        background: #121212;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--bs-border-radius-xl) !important;
+        transition: 0.5s;
+    }
+
+    .boton:after {
+        content: '';
+        position: absolute;
+        top: 12%;
+        left: -5%;
+        z-index: -1;
+        background: #121212;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--bs-border-radius-xl) !important;
+        transition: 0.5s;
+    }
+
+
+.fondo:before {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 39%;
+    z-index: -1;
+    width: 60vw;
+    height: 100vh;
+    background: url(../img/fondo.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+    opacity: 0.2;
+}
+
+.active {
+    height: 100vh;
+}
+
+.imagen:hover {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+    opacity: 1;
+}
+
+.imagen {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+    opacity: 0.2;
+}
+
+.figura-d {
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+}
+
+.figura-z {
+    clip-path: polygon(0 100%, 100% 100%, 100% 0);
+}
+
+@media screen and (max-width: 743px) {
+    .fondo:before {
+        content: '';
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        background: url(../img/fondo.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto 100%;
+        opacity: 0.2;
+    }
+}

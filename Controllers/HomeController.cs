@@ -1,21 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mikencoderx.Models;
 using System.Diagnostics;
+using AppContext = Mikencoderx.Context.AppContext;
 
 namespace Mikencoderx.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly AppContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, AppContext context)
         {
-            _logger = logger;
+            _logger = logger; 
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+
+            var programadores = await _context.Programadores.ToListAsync();
+            return View(programadores);
         }
 
         public IActionResult Privacy()

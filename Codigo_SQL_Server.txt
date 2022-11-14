@@ -1,0 +1,35 @@
+﻿
+insert into Programadores values(
+'David Baca',
+'https://raw.githubusercontent.com/mikencoderx/fotos/main/foto.jpg',
+'finalmente.me.encontraste@gmail.com',
+'Estudiante de la Universidad Politecnica de Quintana Roo, cuenta con experiencia desarrollando paginas web desde hace 3 años'
+)
+
+insert into Programadores values(
+'Yeimi Ceballos',
+'https://raw.githubusercontent.com/mikencoderx/fotos/main/WhatsApp%20Image%202022-11-13%20at%205.03.40%20PM.jpeg',
+'Yeimi.ceballos@gmail.com',
+'Estudiante de la Universidad Politecnica de Quintana Roo cuenta con experiencia desarrollando paginas web y estructuras web'
+)
+
+insert into Programadores values(
+'Citlali Aranda',
+'https://raw.githubusercontent.com/mikencoderx/fotos/main/citla.jpg',
+'Citlali.Aranda@gmail.com',
+'Estudiante de la Universidad Politecnica de Quintana Roo cuenta con experiencia en ventas y estructura de base de datos'
+)
+
+insert into Programadores values(
+'Armin Borges',
+'https://raw.githubusercontent.com/mikencoderx/fotos/main/armin.png',
+'Armin.Borges@gmail.com',
+'Estudiante de la Universidad Politecnica de Quintana Roo cuenta con experiencia en estructura de base de datos y disño de interfaces'
+)
+
+insert into Programadores values(
+'Diana Dzul',
+'--pendiente',
+'Diana.Dzul@gmail.com',
+'Estudiante de la Universidad Politecnica de Quintana Roo, cuenta con experiencia en modelado de proyectos y conexion de controladores'
+)
