@@ -13,8 +13,8 @@ using AppContext = Mikencoderx.Context.AppContext;
 namespace Mikencoderx.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20221113025306_PV")]
-    partial class PV
+    [Migration("20221118001936_example")]
+    partial class example
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,10 @@ namespace Mikencoderx.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Usuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

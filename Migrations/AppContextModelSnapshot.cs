@@ -47,6 +47,10 @@ namespace Mikencoderx.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Usuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("PkAdministradores");
 
                     b.ToTable("Administradores");
