@@ -3,3 +3,60 @@
 *@
 @{
 }
+
+
+<section class="h-xl container d-flex flex-row align-items-center justify-content-center">
+        <div class="row">
+            <div class="w-100 p-5 border-2 border-secondary border-opacity-10 border bg-light col">
+                <div class="mb-5 text-center">
+                  <h1>Mikencoderx</h1>
+                  <h5 class="text-secondary">Administrador de usuarios</h5>
+                </div>
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="ElUsuario" required="required" placeholder="Usuario">
+                </div>
+                <div class="mb-5">
+                    <input type="password" class="form-control" id="LaContraseña" required="required" placeholder="Contraseña">
+                </div>
+                <div class="d-flex justify-content-between">
+                    <a href="#" class="text-primary text-decoration-none">Crear cuenta</a>
+                    <button id="Enviar" class="btn btn-primary">Enviar</button>
+                </div>                
+              </div>
+        </div>
+    </section>
+
+    <script>  
+    $(document).ready(function(){
+        $("#Enviar").click( function(){
+             var user = $("#ElUsuario").val();
+            var password = $("#LaContraseña").val();
+            var data = {
+                "user" : user,
+                "password" : password
+            }
+            $.ajax({
+                url: "/LogginContraller/LoginUser",
+                type: "POST",
+                data: {
+                    "user": user,
+                    "Password": password
+                },
+                dataType: "json",
+                 success: function (response) {
+                    console.log(response)
+                    if (response.success == true) {
+                        console.log(response)
+                        window.location.href = "/Home/Index";
+                    }
+                    else {
+                         alert("Usuario o Contraseña Incorrectos");
+                    }
+                },
+                error: function () {
+                    console.log('Login Fail!!');
+                }
+            })
+        });
+    });
+ </script>
