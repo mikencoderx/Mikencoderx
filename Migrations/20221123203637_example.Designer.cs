@@ -6,14 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mikencoderx.Context;
-using AppContext = Mikencoderx.Context.AppContext;
 
 #nullable disable
 
 namespace Mikencoderx.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20221118001936_example")]
+    [Migration("20221123203637_example")]
     partial class example
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,6 +93,9 @@ namespace Mikencoderx.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkDetelle"), 1L, 1);
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("FechaApertura")
                         .HasColumnType("datetime2");
@@ -230,6 +232,9 @@ namespace Mikencoderx.Migrations
                     b.Property<string>("Descrpcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

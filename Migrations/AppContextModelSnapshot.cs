@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mikencoderx.Context;
-using AppContext = Mikencoderx.Context.AppContext;
 
 #nullable disable
 
@@ -92,6 +91,9 @@ namespace Mikencoderx.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkDetelle"), 1L, 1);
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("FechaApertura")
                         .HasColumnType("datetime2");
@@ -228,6 +230,9 @@ namespace Mikencoderx.Migrations
                     b.Property<string>("Descrpcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

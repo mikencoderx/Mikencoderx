@@ -81,7 +81,8 @@ namespace Mikencoderx.Migrations
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     URLFoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Descrpcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Descrpcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -117,7 +118,8 @@ namespace Mikencoderx.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FechaApertura = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FwechaVencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FkPlanes = table.Column<int>(type: "int", nullable: false)
+                    FkPlanes = table.Column<int>(type: "int", nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
