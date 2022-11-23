@@ -3,3 +3,74 @@
 *@
 @{
 }
+
+<>
+
+
+  <div class="Contenedor animate-bg">
+    <div class="Box1" >
+      <H1>
+        
+
+
+          Login <img src="~/img/icons8-usuario-de-género-neutro-50.png">
+
+       
+      </H1>
+
+      <input type="text"  id="ElUsuario" name="" placeholder="Usuario" class="Lb1">
+
+
+
+      <input type="password" id="LaContraseña" name="" placeholder="Contraseña" class="Lb2">
+
+
+      <button href="#" id="Enviar" >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Entrar
+      </button>
+
+
+
+    </div>
+  </div>
+
+
+
+    <script>  
+    $(document).ready(function(){
+        $("#Enviar").click( function(){
+             var user = $("#ElUsuario").val();
+            var password = $("#LaContraseña").val();
+            var data = {
+                "user" : user,
+                "password" : password
+            }
+            $.ajax({
+                url: "/LogginContraller/LoginUser",
+                type: "POST",
+                data: {
+                    "user": user,
+                    "Password": password
+                },
+                dataType: "json",
+                 success: function (response) {
+                    console.log(response)
+                    if (response.success == true) {
+                        console.log(response)
+                        window.location.href = "/Home/Index";
+                    }
+                    else {
+                         alert("Usuario o Contraseña Incorrectos");
+                    }
+                },
+                error: function () {
+                    console.log('Login Fail!!');
+                }
+            })
+        });
+    });
+ </script>

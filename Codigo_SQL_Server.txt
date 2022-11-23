@@ -29,7 +29,15 @@ insert into Programadores values(
 
 insert into Programadores values(
 'Diana Dzul',
-'--pendiente',
+'https://raw.githubusercontent.com/mikencoderx/fotos/main/diana.jpg',
 'Diana.Dzul@gmail.com',
 'Estudiante de la Universidad Politecnica de Quintana Roo, cuenta con experiencia en modelado de proyectos y conexion de controladores'
+)
+
+insert into Administradores values (
+'David Stephen Baca Pastor',
+'finalmente.me.encontraste@gmail.com',
+'9984173575',
+'15011987',
+'Admin'
 )

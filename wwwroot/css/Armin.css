@@ -1,0 +1,206 @@
+﻿body {
+    margin: 0%;
+    padding: 0%;
+    background-color: black;
+    box-sizing: border-box;
+}
+
+.Box1 h1 {
+    color: white;
+    padding: 70px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 55px;
+}
+
+.Box1 input[type= "text"], .Box1 input[type= "password"] {
+    font-size: 20px;
+    border: none;
+    background: none;
+    display: block;
+    margin: 50px auto;
+    text-align: center;
+    border: 2px solid #5e17eb;
+    padding: 18px 20px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.5s;
+}
+
+    .Box1 input[type= "text"]:focus, .Box1 input[type= "password"]:focus {
+        width: 280px;
+        border-color: #5e17eb
+    }
+
+
+
+
+/*
+ Cuandro morado
+*/
+.Contenedor {
+    position: relative;
+    margin: 5% auto 0;
+    width: 850px;
+    /* padding: 350px; */
+    height: 800px;
+    background: linear-gradient(90deg, #000, #000000);
+}
+
+
+.animate-bg:before, .animate-bg:after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: -8px;
+    background: linear-gradient(120deg, #5e17eb, #5e17eb, #000000, #000000, #000000, #5e17eb,#5e17eb, #5e17eb);
+    background-size: 300%;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    z-index: -1;
+    animation: BGgradient 7s ease infinite;
+}
+
+
+@keyframes BGgradient {
+    0% {
+        background-position: 0% 200%;
+    }
+
+    50% {
+        background-position: 200% 0%;
+    }
+
+    100% {
+        background-position: 0% 330%;
+    }
+}
+
+.animate-bg:after {
+    filter: brightness(1.4);
+    filter: drop-shadow(10px 10px 10px rgb(248, 220, 97));
+    filter: blur(10px);
+}
+
+
+
+.Box1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+/*
+Boton
+*/
+
+.Contenedor div button {
+    background: black;
+    position: relative;
+    display: inline-block;
+    padding: 17px 27px;
+    color: #fafafa;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 50px;
+    margin-left: 354px;
+    letter-spacing: 4px
+}
+
+.Contenedor button:hover {
+    background: #5e17eb;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #5e17eb, 0 0 25px #5e17eb, 0 0 50px #5e17eb, 0 0 100px #5e17eb;
+}
+
+.Contenedor button span {
+    position: absolute;
+    display: block;
+}
+
+    .Contenedor button span:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, transparent, #5e17eb);
+        animation: btn-anim1 1s linear infinite;
+    }
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,100% {
+        left: 100%;
+    }
+}
+
+.Contenedor button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #5e17eb);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,100% {
+        top: 100%;
+    }
+}
+
+.Contenedor button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(270deg, transparent, #5e17eb);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,100% {
+        right: 100%;
+    }
+}
+
+.Contenedor button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #5e17eb);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,100% {
+        bottom: 100%;
+    }
+}
