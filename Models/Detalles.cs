@@ -12,6 +12,7 @@ namespace Mikencoderx.Models
         [ForeignKey("Planes")]
         public int FkPlanes { get; set; }
         public Planes Planes { get; set; }
+        public bool Estado { get; set; }
 
     }
 }

@@ -10,5 +10,6 @@ namespace Mikencoderx.Models
         public string URLFoto { get; set; }
         public string Correo { get; set; }
         public string Descrpcion { get; set; }
+        public bool Estado { get; set; }
     }
 }
