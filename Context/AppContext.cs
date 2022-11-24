@@ -11,8 +11,7 @@ namespace Mikencoderx.Context
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Proyectos> Proyectos { get; set; }
         public DbSet<Membresias> Membresias { get; set; }
-        public DbSet<Planes> Planes { get; set; }
-        public DbSet<Detalles> Detalles { get; set; }        
+        public DbSet<Planes> Planes { get; set; }   
         public DbSet<Lenguajes> Lenguajes { get; set; }
         public DbSet<Administradores> Administradores { get; set; }
         public DbSet<Lista_PL> Lista_PL { get; set; }

@@ -7,18 +7,21 @@ namespace Mikencoderx.Models
     {
         [Key]
         public int PkMembresias { get; set; } 
-        public bool Estado { get; set; }
+
+        public DateTime FechaApertura { get; set; }
+        public DateTime FechaVencimiento { get; set; }
+
+        [ForeignKey("Planes")]
+        public int FkPlanes { get; set; }
+        public Planes Planes { get; set; }
 
         [ForeignKey("Clientes")]
         public int FkClientes { get; set; }
         public Clientes Clientes { get; set; }
 
-        [ForeignKey("Proyecto")]
+        [ForeignKey("Proyectos")]
         public int FkProyecto { get; set; }
         public Proyectos Proyectos { get; set; }
 
-        [ForeignKey("Detalles")]
-        public int FkDetalles { get; set; }
-        public Detalles Detalles { get; set; }
     }
 }

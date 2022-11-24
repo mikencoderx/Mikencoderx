@@ -13,7 +13,7 @@ using AppContext = Mikencoderx.Context.AppContext;
 namespace Mikencoderx.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20221123203637_example")]
+    [Migration("20221124004655_example")]
     partial class example
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,33 +87,6 @@ namespace Mikencoderx.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("Mikencoderx.Models.Detalles", b =>
-                {
-                    b.Property<int>("PkDetelle")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkDetelle"), 1L, 1);
-
-                    b.Property<bool>("Estado")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("FechaApertura")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("FkPlanes")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("FwechaVencimiento")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("PkDetelle");
-
-                    b.HasIndex("FkPlanes");
-
-                    b.ToTable("Detalles");
-                });
-
             modelBuilder.Entity("Mikencoderx.Models.Lenguajes", b =>
                 {
                     b.Property<int>("PkLenguajes")
@@ -169,28 +142,28 @@ namespace Mikencoderx.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkMembresias"), 1L, 1);
 
-                    b.Property<bool>("Estado")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("FechaApertura")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaVencimiento")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("FkClientes")
                         .HasColumnType("int");
 
-                    b.Property<int>("FkDetalles")
+                    b.Property<int>("FkPlanes")
                         .HasColumnType("int");
 
                     b.Property<int>("FkProyecto")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProyectosPkProyecto")
                         .HasColumnType("int");
 
                     b.HasKey("PkMembresias");
 
                     b.HasIndex("FkClientes");
 
-                    b.HasIndex("FkDetalles");
+                    b.HasIndex("FkPlanes");
 
-                    b.HasIndex("ProyectosPkProyecto");
+                    b.HasIndex("FkProyecto");
 
                     b.ToTable("Membresias");
                 });
@@ -212,6 +185,9 @@ namespace Mikencoderx.Migrations
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("dias")
+                        .HasColumnType("int");
 
                     b.HasKey("PkPlanes");
 
@@ -258,10 +234,10 @@ namespace Mikencoderx.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkProyecto"), 1L, 1);
 
-                    b.Property<int>("FkProgramadores")
-                        .HasColumnType("int");
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("ProgramadorPkPrgramadores")
+                    b.Property<int>("FkProgramadores")
                         .HasColumnType("int");
 
                     b.Property<string>("URLMaster")
@@ -274,7 +250,7 @@ namespace Mikencoderx.Migrations
 
                     b.HasKey("PkProyecto");
 
-                    b.HasIndex("ProgramadorPkPrgramadores");
+                    b.HasIndex("FkProgramadores");
 
                     b.ToTable("Proyectos");
                 });
@@ -304,17 +280,6 @@ namespace Mikencoderx.Migrations
                     b.ToTable("Registros");
                 });
 
-            modelBuilder.Entity("Mikencoderx.Models.Detalles", b =>
-                {
-                    b.HasOne("Mikencoderx.Models.Planes", "Planes")
-                        .WithMany()
-                        .HasForeignKey("FkPlanes")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Planes");
-                });
-
             modelBuilder.Entity("Mikencoderx.Models.Lista_PL", b =>
                 {
                     b.HasOne("Mikencoderx.Models.Lenguajes", "Lenguajes")
@@ -342,34 +307,34 @@ namespace Mikencoderx.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Mikencoderx.Models.Detalles", "Detalles")
+                    b.HasOne("Mikencoderx.Models.Planes", "Planes")
                         .WithMany()
-                        .HasForeignKey("FkDetalles")
+                        .HasForeignKey("FkPlanes")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Mikencoderx.Models.Proyectos", "Proyectos")
                         .WithMany()
-                        .HasForeignKey("ProyectosPkProyecto")
+                        .HasForeignKey("FkProyecto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Clientes");
 
-                    b.Navigation("Detalles");
+                    b.Navigation("Planes");
 
                     b.Navigation("Proyectos");
                 });
 
             modelBuilder.Entity("Mikencoderx.Models.Proyectos", b =>
                 {
-                    b.HasOne("Mikencoderx.Models.Programadores", "Programador")
+                    b.HasOne("Mikencoderx.Models.Programadores", "Programadores")
                         .WithMany()
-                        .HasForeignKey("ProgramadorPkPrgramadores")
+                        .HasForeignKey("FkProgramadores")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Programador");
+                    b.Navigation("Programadores");
                 });
 
             modelBuilder.Entity("Mikencoderx.Models.Registros", b =>

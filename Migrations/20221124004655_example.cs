@@ -64,6 +64,7 @@ namespace Mikencoderx.Migrations
                     PkPlanes = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    dias = table.Column<int>(type: "int", nullable: false),
                     Cantidad = table.Column<double>(type: "float", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -111,28 +112,6 @@ namespace Mikencoderx.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Detalles",
-                columns: table => new
-                {
-                    PkDetelle = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FechaApertura = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FwechaVencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FkPlanes = table.Column<int>(type: "int", nullable: false),
-                    Estado = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Detalles", x => x.PkDetelle);
-                    table.ForeignKey(
-                        name: "FK_Detalles_Planes_FkPlanes",
-                        column: x => x.FkPlanes,
-                        principalTable: "Planes",
-                        principalColumn: "PkPlanes",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Lista_PL",
                 columns: table => new
                 {
@@ -166,15 +145,15 @@ namespace Mikencoderx.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     URLWeb = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     URLMaster = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FkProgramadores = table.Column<int>(type: "int", nullable: false),
-                    ProgramadorPkPrgramadores = table.Column<int>(type: "int", nullable: false)
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
+                    FkProgramadores = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Proyectos", x => x.PkProyecto);
                     table.ForeignKey(
-                        name: "FK_Proyectos_Programadores_ProgramadorPkPrgramadores",
-                        column: x => x.ProgramadorPkPrgramadores,
+                        name: "FK_Proyectos_Programadores_FkProgramadores",
+                        column: x => x.FkProgramadores,
                         principalTable: "Programadores",
                         principalColumn: "PkPrgramadores",
                         onDelete: ReferentialAction.Cascade);
@@ -186,11 +165,11 @@ namespace Mikencoderx.Migrations
                 {
                     PkMembresias = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Estado = table.Column<bool>(type: "bit", nullable: false),
+                    FechaApertura = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaVencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FkPlanes = table.Column<int>(type: "int", nullable: false),
                     FkClientes = table.Column<int>(type: "int", nullable: false),
-                    FkProyecto = table.Column<int>(type: "int", nullable: false),
-                    ProyectosPkProyecto = table.Column<int>(type: "int", nullable: false),
-                    FkDetalles = table.Column<int>(type: "int", nullable: false)
+                    FkProyecto = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -202,23 +181,18 @@ namespace Mikencoderx.Migrations
                         principalColumn: "PkCliente",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Membresias_Detalles_FkDetalles",
-                        column: x => x.FkDetalles,
-                        principalTable: "Detalles",
-                        principalColumn: "PkDetelle",
+                        name: "FK_Membresias_Planes_FkPlanes",
+                        column: x => x.FkPlanes,
+                        principalTable: "Planes",
+                        principalColumn: "PkPlanes",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Membresias_Proyectos_ProyectosPkProyecto",
-                        column: x => x.ProyectosPkProyecto,
+                        name: "FK_Membresias_Proyectos_FkProyecto",
+                        column: x => x.FkProyecto,
                         principalTable: "Proyectos",
                         principalColumn: "PkProyecto",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Detalles_FkPlanes",
-                table: "Detalles",
-                column: "FkPlanes");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Lista_PL_FkLenguajes",
@@ -236,19 +210,19 @@ namespace Mikencoderx.Migrations
                 column: "FkClientes");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Membresias_FkDetalles",
+                name: "IX_Membresias_FkPlanes",
                 table: "Membresias",
-                column: "FkDetalles");
+                column: "FkPlanes");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Membresias_ProyectosPkProyecto",
+                name: "IX_Membresias_FkProyecto",
                 table: "Membresias",
-                column: "ProyectosPkProyecto");
+                column: "FkProyecto");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Proyectos_ProgramadorPkPrgramadores",
+                name: "IX_Proyectos_FkProgramadores",
                 table: "Proyectos",
-                column: "ProgramadorPkPrgramadores");
+                column: "FkProgramadores");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Registros_FkAdministrador",
@@ -274,16 +248,13 @@ namespace Mikencoderx.Migrations
                 name: "Clientes");
 
             migrationBuilder.DropTable(
-                name: "Detalles");
+                name: "Planes");
 
             migrationBuilder.DropTable(
                 name: "Proyectos");
 
             migrationBuilder.DropTable(
                 name: "Administradores");
-
-            migrationBuilder.DropTable(
-                name: "Planes");
 
             migrationBuilder.DropTable(
                 name: "Programadores");

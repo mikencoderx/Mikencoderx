@@ -41,3 +41,94 @@ insert into Administradores values (
 '15011987',
 'Admin'
 )
+
+insert into Clientes values(
+'Betty May',
+'99847515',
+'bet@gmail.com',
+'BAPM050214'
+)
+
+insert into Clientes values(
+'Jesus David',
+'9985847162',
+'jd@gmail.com',
+'JDBP050194'
+)
+
+insert into Proyectos values(
+'apoyo-econimico.com',
+'master-apoyo-econimico.com',
+0,
+1
+)
+
+insert into planes values (
+'Mensual',
+30,
+255,
+1
+)
+
+create PROCEDURE recargar
+@PkProyecto int null
+AS
+begin
+declare
+@Pkmembresia int = null,
+@IdProyecto int = null,
+@maximo int = null,
+@condicion int = null
+
+if (@PkProyecto is null)
+begin
+  select @PkProyecto = min(PkProyecto) from Proyectos
+end
+
+select @condicion = PkProyecto from Proyectos 
+where PkProyecto = @PkProyecto
+
+if @condicion is not null
+begin
+
+	select top 1 @Pkmembresia = ( Membresias.PkMembresias )
+	from Proyectos 
+	inner join Membresias on Proyectos.PkProyecto = Membresias.FkProyecto 
+	where PkProyecto = @PkProyecto
+	order by DATEDIFF(day,FechaApertura,GETDATE())
+
+	select @IdProyecto = PkProyecto from Membresias
+	inner join Planes on Membresias.FkPlanes = Planes.PkPlanes
+	inner join Proyectos on Membresias.FkProyecto = Proyectos.PkProyecto
+	where PkMembresias = @Pkmembresia and
+	DATEDIFF(day,FechaApertura,GETDATE()) < Planes.dias
+
+	if @IdProyecto is null
+	begin
+		update Proyectos
+		set Estado = 0
+		where PkProyecto = @PkProyecto
+	end
+	if @IdProyecto is not null
+	begin
+		update Proyectos
+		set Estado = 1
+		where PkProyecto = @PkProyecto
+	end
+
+end
+
+select @maximo = Max(PkProyecto) from Proyectos
+
+if @maximo > @PkProyecto
+begin 
+   declare
+   @element int = @pkproyecto +1
+   execute recargar @element
+end
+
+end
+GO
+
+
+
