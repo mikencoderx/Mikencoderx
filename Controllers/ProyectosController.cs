@@ -4,7 +4,6 @@ namespace Mikencoderx.Controllers
 {
     public class ProyectosController : Controller
     {
-        
         public IActionResult Index()
         {
             return View();
