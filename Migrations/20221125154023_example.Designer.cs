@@ -13,7 +13,7 @@ using AppContext = Mikencoderx.Context.AppContext;
 namespace Mikencoderx.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20221124004655_example")]
+    [Migration("20221125154023_example")]
     partial class example
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,6 +239,10 @@ namespace Mikencoderx.Migrations
 
                     b.Property<int>("FkProgramadores")
                         .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("URLMaster")
                         .IsRequired()

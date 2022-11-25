@@ -1,0 +1,20 @@
+﻿
+
+.tabla {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+}
+
+.tabla-cont {
+    min-width: 42rem;
+}
+
+.btn-outline-morado {
+    border: #5E17EB solid 2px;
+}
+
+    .btn-outline-morado:hover {
+        background: #5E17EB;
+        color: #fff;
+    }
