@@ -2,4 +2,53 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "_Lateral";
+    ViewData["Title"] = "Crear Proyecto";
 }
+            <div class="container ps-5 pt-5">
+                <div class="row justify-content-center mt-5 mb-5">
+                    <div class="col-md-5 col-12">
+                        <div class="col-12 mt-5 mb-2">
+                            <h1>
+                                Crear Proyecto
+                            </h1>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Nombre
+                            </h5>
+                            <input type="email" class="form-control" 
+                            id="email" placeholder="Nombre">
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Url del sitio web
+                            </h5>
+                            <input type="email" class="form-control" 
+                            id="email" placeholder="Url del sitio web">
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Url master
+                            </h5>
+                            <input type="email" class="form-control" 
+                            id="email" placeholder="Url master">
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Programador
+                            </h5>
+                            <select class="form-select" id="country" required="">
+                                <option value="">Selecciona</option>
+                                <option>David Baca</option>
+                              </select>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <a class="link link-primary text-decoration-none text-primary
+                            text-opacity-75 me-5">
+                                Regresar</a>
+                            <a class="btn btn-primary">Guardar</a>                    
+                        </div>
+                </div>
+            </div>
+        </div>
