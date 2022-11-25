@@ -238,6 +238,10 @@ namespace Mikencoderx.Migrations
                     b.Property<int>("FkProgramadores")
                         .HasColumnType("int");
 
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("URLMaster")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

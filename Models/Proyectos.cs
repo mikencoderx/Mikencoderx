@@ -7,6 +7,7 @@ namespace Mikencoderx.Models
     {
         [Key]
         public int PkProyecto { get; set; }
+        public string Nombre { get; set; }
         public string URLWeb { get; set; }
         public string URLMaster { get; set; }
         public bool Estado { get; set; }

@@ -143,6 +143,7 @@ namespace Mikencoderx.Migrations
                 {
                     PkProyecto = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     URLWeb = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     URLMaster = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
