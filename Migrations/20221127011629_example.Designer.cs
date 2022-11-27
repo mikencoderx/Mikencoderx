@@ -13,7 +13,7 @@ using AppContext = Mikencoderx.Context.AppContext;
 namespace Mikencoderx.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20221125154023_example")]
+    [Migration("20221127011629_example")]
     partial class example
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,39 +24,6 @@ namespace Mikencoderx.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Mikencoderx.Models.Administradores", b =>
-                {
-                    b.Property<int>("PkAdministradores")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkAdministradores"), 1L, 1);
-
-                    b.Property<string>("Contraseña")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Correo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefono")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Usuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PkAdministradores");
-
-                    b.ToTable("Administradores");
-                });
 
             modelBuilder.Entity("Mikencoderx.Models.Clientes", b =>
                 {
@@ -87,30 +54,6 @@ namespace Mikencoderx.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("Mikencoderx.Models.Lenguajes", b =>
-                {
-                    b.Property<int>("PkLenguajes")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkLenguajes"), 1L, 1);
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Porcentaje")
-                        .HasColumnType("int");
-
-                    b.Property<string>("URLFoto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PkLenguajes");
-
-                    b.ToTable("Lenguajes");
-                });
-
             modelBuilder.Entity("Mikencoderx.Models.Lista_PL", b =>
                 {
                     b.Property<int>("pkLista")
@@ -119,17 +62,20 @@ namespace Mikencoderx.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("pkLista"), 1L, 1);
 
-                    b.Property<int>("FkLenguajes")
+                    b.Property<int>("FkProgramadores")
                         .HasColumnType("int");
 
-                    b.Property<int>("FkProgramadores")
+                    b.Property<int>("FkTecnologiass")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Porcentaje")
                         .HasColumnType("int");
 
                     b.HasKey("pkLista");
 
-                    b.HasIndex("FkLenguajes");
-
                     b.HasIndex("FkProgramadores");
+
+                    b.HasIndex("FkTecnologiass");
 
                     b.ToTable("Lista_PL");
                 });
@@ -274,33 +220,91 @@ namespace Mikencoderx.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FkAdministrador")
+                    b.Property<int>("FkUsuarios")
                         .HasColumnType("int");
 
                     b.HasKey("PkRegistro");
 
-                    b.HasIndex("FkAdministrador");
+                    b.HasIndex("FkUsuarios");
 
                     b.ToTable("Registros");
                 });
 
+            modelBuilder.Entity("Mikencoderx.Models.Tecnologias", b =>
+                {
+                    b.Property<int>("PkTecnologias")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkTecnologias"), 1L, 1);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("URLFoto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PkTecnologias");
+
+                    b.ToTable("Lenguajes");
+                });
+
+            modelBuilder.Entity("Mikencoderx.Models.Usuarios", b =>
+                {
+                    b.Property<int>("PkUsuario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkUsuario"), 1L, 1);
+
+                    b.Property<string>("Contraseña")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Correo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Usuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("rol")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PkUsuario");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("Mikencoderx.Models.Lista_PL", b =>
                 {
-                    b.HasOne("Mikencoderx.Models.Lenguajes", "Lenguajes")
-                        .WithMany()
-                        .HasForeignKey("FkLenguajes")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Mikencoderx.Models.Programadores", "Programadores")
                         .WithMany()
                         .HasForeignKey("FkProgramadores")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Lenguajes");
+                    b.HasOne("Mikencoderx.Models.Tecnologias", "Tecnologias")
+                        .WithMany()
+                        .HasForeignKey("FkTecnologiass")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Programadores");
+
+                    b.Navigation("Tecnologias");
                 });
 
             modelBuilder.Entity("Mikencoderx.Models.Membresias", b =>
@@ -343,13 +347,13 @@ namespace Mikencoderx.Migrations
 
             modelBuilder.Entity("Mikencoderx.Models.Registros", b =>
                 {
-                    b.HasOne("Mikencoderx.Models.Administradores", "Administradores")
+                    b.HasOne("Mikencoderx.Models.Usuarios", "Usuarios")
                         .WithMany()
-                        .HasForeignKey("FkAdministrador")
+                        .HasForeignKey("FkUsuarios")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Administradores");
+                    b.Navigation("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

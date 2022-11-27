@@ -10,23 +10,6 @@ namespace Mikencoderx.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Administradores",
-                columns: table => new
-                {
-                    PkAdministradores = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Administradores", x => x.PkAdministradores);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Clientes",
                 columns: table => new
                 {
@@ -46,15 +29,14 @@ namespace Mikencoderx.Migrations
                 name: "Lenguajes",
                 columns: table => new
                 {
-                    PkLenguajes = table.Column<int>(type: "int", nullable: false)
+                    PkTecnologias = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    URLFoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Porcentaje = table.Column<int>(type: "int", nullable: false)
+                    URLFoto = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Lenguajes", x => x.PkLenguajes);
+                    table.PrimaryKey("PK_Lenguajes", x => x.PkTecnologias);
                 });
 
             migrationBuilder.CreateTable(
@@ -91,24 +73,21 @@ namespace Mikencoderx.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Registros",
+                name: "Usuarios",
                 columns: table => new
                 {
-                    PkRegistro = table.Column<int>(type: "int", nullable: false)
+                    PkUsuario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Accion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FkAdministrador = table.Column<int>(type: "int", nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    rol = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Registros", x => x.PkRegistro);
-                    table.ForeignKey(
-                        name: "FK_Registros_Administradores_FkAdministrador",
-                        column: x => x.FkAdministrador,
-                        principalTable: "Administradores",
-                        principalColumn: "PkAdministradores",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Usuarios", x => x.PkUsuario);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,17 +96,18 @@ namespace Mikencoderx.Migrations
                 {
                     pkLista = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FkLenguajes = table.Column<int>(type: "int", nullable: false),
+                    Porcentaje = table.Column<int>(type: "int", nullable: false),
+                    FkTecnologiass = table.Column<int>(type: "int", nullable: false),
                     FkProgramadores = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Lista_PL", x => x.pkLista);
                     table.ForeignKey(
-                        name: "FK_Lista_PL_Lenguajes_FkLenguajes",
-                        column: x => x.FkLenguajes,
+                        name: "FK_Lista_PL_Lenguajes_FkTecnologiass",
+                        column: x => x.FkTecnologiass,
                         principalTable: "Lenguajes",
-                        principalColumn: "PkLenguajes",
+                        principalColumn: "PkTecnologias",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Lista_PL_Programadores_FkProgramadores",
@@ -157,6 +137,27 @@ namespace Mikencoderx.Migrations
                         column: x => x.FkProgramadores,
                         principalTable: "Programadores",
                         principalColumn: "PkPrgramadores",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Registros",
+                columns: table => new
+                {
+                    PkRegistro = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Accion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FkUsuarios = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Registros", x => x.PkRegistro);
+                    table.ForeignKey(
+                        name: "FK_Registros_Usuarios_FkUsuarios",
+                        column: x => x.FkUsuarios,
+                        principalTable: "Usuarios",
+                        principalColumn: "PkUsuario",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -196,14 +197,14 @@ namespace Mikencoderx.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Lista_PL_FkLenguajes",
-                table: "Lista_PL",
-                column: "FkLenguajes");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Lista_PL_FkProgramadores",
                 table: "Lista_PL",
                 column: "FkProgramadores");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Lista_PL_FkTecnologiass",
+                table: "Lista_PL",
+                column: "FkTecnologiass");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Membresias_FkClientes",
@@ -226,9 +227,9 @@ namespace Mikencoderx.Migrations
                 column: "FkProgramadores");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Registros_FkAdministrador",
+                name: "IX_Registros_FkUsuarios",
                 table: "Registros",
-                column: "FkAdministrador");
+                column: "FkUsuarios");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -255,7 +256,7 @@ namespace Mikencoderx.Migrations
                 name: "Proyectos");
 
             migrationBuilder.DropTable(
-                name: "Administradores");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Programadores");

@@ -1,16 +1,17 @@
 ﻿@model Mikencoderx.Models.Proyectos
 @{
     Layout = "_Lateral";
-    ViewData["Title"] = "Crear Proyecto";
+    ViewData["Title"] = "Editar Proyecto";
 }
             <div class="container ps-5 pt-5">
                 <div class="row justify-content-center mt-5 mb-5">
-                    <form asp-action="CrearProyecto" method="post" class="col-md-5 col-12">
+                    <form asp-action="EditarProyecto" method="post" class="col-md-5 col-12">
                         <div class="col-12 mt-5 mb-2">
                             <h1>
-                                @ViewData["Title"]
+                    @ViewData["Title"]
                             </h1>
                         </div>
+                        <input type="hidden" asp-for="PkProyecto" />
                         <div class="col-12 mt-3">
                             <h5 class="text-secondary">
                                 Nombre

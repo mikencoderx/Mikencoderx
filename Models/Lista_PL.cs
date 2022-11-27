@@ -5,9 +5,11 @@ namespace Mikencoderx.Models
 {
     public class Lista_PL
     {
-        [ForeignKey("Lenguajes")]
-        public int FkLenguajes { get; set; }
-        public Lenguajes Lenguajes { get; set; }
+        public int Porcentaje { get; set; }
+
+        [ForeignKey("Tecnologias")]
+        public int FkTecnologiass { get; set; }
+        public Tecnologias Tecnologias { get; set; }
 
         [ForeignKey("Programadores")]
         public int FkProgramadores { get; set; }

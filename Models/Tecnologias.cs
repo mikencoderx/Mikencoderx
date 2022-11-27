@@ -3,13 +3,11 @@ using System.Runtime.CompilerServices;
 
 namespace Mikencoderx.Models
 {
-    public class Lenguajes
+    public class Tecnologias
     {
         [Key]
-        public int PkLenguajes { get; set; }
+        public int PkTecnologias { get; set; }
         public string Nombre { get; set; }
         public string URLFoto { get; set; }
-        public int Porcentaje { get; set; }
-
     }
 }

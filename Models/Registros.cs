@@ -9,8 +9,8 @@ namespace Mikencoderx.Models
         public int PkRegistro { get; set; }
         public string Accion { get; set; }
         public DateTime Fecha { get; set; }
-        [ForeignKey("Administradores")]
-        public int FkAdministrador { get; set; }
-        public Administradores Administradores { get; set; }
+        [ForeignKey("Usuarios")]
+        public int FkUsuarios { get; set; }
+        public Usuarios Usuarios { get; set; }
     }
 }

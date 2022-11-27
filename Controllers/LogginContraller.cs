@@ -1,4 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Mikencoderx.Models;
+using System;
+using System.Data;
+using Mikencoderx.Models;
 using AppContext = Mikencoderx.Context.AppContext;
 
 
@@ -7,7 +13,6 @@ namespace Mikencoderx.Controllers
     public class LogginContraller : Controller
     {
         private readonly AppContext _context;
-
         public LogginContraller( AppContext context)
         {
             _context = context;
@@ -23,7 +28,7 @@ namespace Mikencoderx.Controllers
         {
             try
             {
-                var response = _context.Administradores.Where(x => x.Usuario == user && x.Contraseña == Password).ToList();
+                var response = _context.Usuarios.Where(x => x.Usuario == user && x.Contraseña == Password).ToList();
                 if (response.Count() > 0)
                 {
                     //se va a logear
