@@ -1,4 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Mikencoderx.Models;
+using System;
+using System.Data;
+using Mikencoderx.Models;
 using AppContext = Mikencoderx.Context.AppContext;
 
 
@@ -7,7 +13,6 @@ namespace Mikencoderx.Controllers
     public class LogginContraller : Controller
     {
         private readonly AppContext _context;
-
         public LogginContraller( AppContext context)
         {
             _context = context;

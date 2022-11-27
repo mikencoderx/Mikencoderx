@@ -70,8 +70,8 @@ insert into planes values (
 1
 )
 
-create PROCEDURE recargar
-@PkProyecto int null
+create PROCEDURE Recargar
+@PkProyecto int = null
 AS
 begin
 declare
@@ -124,7 +124,7 @@ if @maximo > @PkProyecto
 begin 
    declare
    @element int = @pkproyecto +1
-   execute recargar @element
+   execute Recargar @element
 end
 
 end

@@ -1,14 +1,14 @@
-﻿@model Mikencoderx.Models.Proyectos
+﻿@model Mikencoderx.Models.Clientes
 @{
     Layout = "_Lateral";
-    ViewData["Title"] = "Crear Proyecto";
+    ViewData["Title"] = "Crear Cliente";
 }
             <div class="container ps-5 pt-5">
                 <div class="row justify-content-center mt-5 mb-5">
-                    <form asp-action="CrearProyecto" method="post" class="col-md-5 col-12">
+                    <form asp-action="CrearCliente" method="post" class="col-md-5 col-12">
                         <div class="col-12 mt-5 mb-2">
                             <h1>
-                                @ViewData["Title"]
+                    @ViewData["Title"]
                             </h1>
                         </div>
                         <div class="col-12 mt-3">
@@ -20,29 +20,28 @@
                         </div>
                         <div class="col-12 mt-3">
                             <h5 class="text-secondary">
-                                Url del sitio web
+                                Correo
                             </h5>
-                            <input asp-for="URLWeb" type="text" class="form-control" required 
-                            placeholder="Url del sitio web">
+                            <input asp-for="Correo" type="email" class="form-control" required 
+                            placeholder="Correo">
                         </div>
                         <div class="col-12 mt-3">
                             <h5 class="text-secondary">
-                                Url master
+                                Telefono
                             </h5>
-                            <input asp-for="URLMaster" type="text" class="form-control" required 
-                            placeholder="Url master">
+                            <input asp-for="Telefono" type="text" class="form-control" required 
+                            placeholder="Telefono">
                         </div>
                         <div class="col-12 mt-3">
                             <h5 class="text-secondary">
-                                lider de proyecto
+                                RFC
                             </h5>
-                            <select asp-for="FkProgramadores" asp-items="ViewBag.Programadores" class="form-select" required="">
-                                <option value="">Selecciona</option>
-                              </select>
+                            <input asp-for="RFC" type="text" class="form-control" required 
+                            placeholder="RFC">
                         </div>
                         <div class="col-12 mt-3">
 
-                            <a asp-area="" asp-controller="Proyectos" asp-action="Index"
+                            <a asp-action="Index"
                             class="link link-primary text-decoration-none text-primary
                             text-opacity-75 me-5">
                                 Regresar</a>
@@ -51,6 +50,6 @@
                                 Guardar
                             </button>                    
                         </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
