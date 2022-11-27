@@ -1,0 +1,60 @@
+﻿@model Mikencoderx.Models.Programadores
+@{
+    Layout = "_Lateral";
+    ViewData["Title"] = "Editar Programador";
+}
+            <div class="container ps-5 pt-5">
+                <div class="row justify-content-center mt-5 mb-5">
+                    <form asp-action="EditarProgramador" method="post" class="col-md-5 col-12">
+                        <div class="col-12 mt-5 mb-2">
+                            <h1>
+                    @ViewData["Title"]
+                            </h1>
+                        </div>
+                        <input type="hidden" asp-for="PkPrgramadores"/>
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Nombre
+                            </h5>
+                            <input asp-for="Nombre" type="text" class="form-control" required 
+                            placeholder="Nombre">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Correo
+                            </h5>
+                            <input asp-for="Correo" type="text" class="form-control" required 
+                            placeholder="Correo">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Url Foto
+                            </h5>
+                            <input asp-for="URLFoto" type="text" class="form-control" required 
+                            placeholder="URL Foto">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Descripcion
+                            </h5>
+                            <textarea asp-for="Descrpcion" type="text" class="form-control" required 
+                            placeholder="Descripcion" style="height: 20rem;">
+                            </textarea>
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <a asp-action="Index"
+                            class="link link-primary text-decoration-none text-primary
+                            text-opacity-75 me-5">
+                                Regresar</a>
+
+                            <button type="submit" class="btn btn-primary">
+                                Guardar
+                            </button>                    
+                        </div>
+                </form>
+            </div>
+        </div>
