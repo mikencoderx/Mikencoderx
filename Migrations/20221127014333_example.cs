@@ -26,20 +26,6 @@ namespace Mikencoderx.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Lenguajes",
-                columns: table => new
-                {
-                    PkTecnologias = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    URLFoto = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Lenguajes", x => x.PkTecnologias);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Planes",
                 columns: table => new
                 {
@@ -73,48 +59,30 @@ namespace Mikencoderx.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuarios",
+                name: "Roles",
                 columns: table => new
                 {
-                    PkUsuario = table.Column<int>(type: "int", nullable: false)
+                    PkRol = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    rol = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuarios", x => x.PkUsuario);
+                    table.PrimaryKey("PK_Roles", x => x.PkRol);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Lista_PL",
+                name: "Tecnologias",
                 columns: table => new
                 {
-                    pkLista = table.Column<int>(type: "int", nullable: false)
+                    PkTecnologias = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Porcentaje = table.Column<int>(type: "int", nullable: false),
-                    FkTecnologiass = table.Column<int>(type: "int", nullable: false),
-                    FkProgramadores = table.Column<int>(type: "int", nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    URLFoto = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Lista_PL", x => x.pkLista);
-                    table.ForeignKey(
-                        name: "FK_Lista_PL_Lenguajes_FkTecnologiass",
-                        column: x => x.FkTecnologiass,
-                        principalTable: "Lenguajes",
-                        principalColumn: "PkTecnologias",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Lista_PL_Programadores_FkProgramadores",
-                        column: x => x.FkProgramadores,
-                        principalTable: "Programadores",
-                        principalColumn: "PkPrgramadores",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Tecnologias", x => x.PkTecnologias);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,23 +109,53 @@ namespace Mikencoderx.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Registros",
+                name: "Usuarios",
                 columns: table => new
                 {
-                    PkRegistro = table.Column<int>(type: "int", nullable: false)
+                    PkUsuario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Accion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FkUsuarios = table.Column<int>(type: "int", nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FkRoles = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Registros", x => x.PkRegistro);
+                    table.PrimaryKey("PK_Usuarios", x => x.PkUsuario);
                     table.ForeignKey(
-                        name: "FK_Registros_Usuarios_FkUsuarios",
-                        column: x => x.FkUsuarios,
-                        principalTable: "Usuarios",
-                        principalColumn: "PkUsuario",
+                        name: "FK_Usuarios_Roles_FkRoles",
+                        column: x => x.FkRoles,
+                        principalTable: "Roles",
+                        principalColumn: "PkRol",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Lista_PL",
+                columns: table => new
+                {
+                    pkLista = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Porcentaje = table.Column<int>(type: "int", nullable: false),
+                    FkTecnologiass = table.Column<int>(type: "int", nullable: false),
+                    FkProgramadores = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lista_PL", x => x.pkLista);
+                    table.ForeignKey(
+                        name: "FK_Lista_PL_Programadores_FkProgramadores",
+                        column: x => x.FkProgramadores,
+                        principalTable: "Programadores",
+                        principalColumn: "PkPrgramadores",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Lista_PL_Tecnologias_FkTecnologiass",
+                        column: x => x.FkTecnologiass,
+                        principalTable: "Tecnologias",
+                        principalColumn: "PkTecnologias",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -196,6 +194,27 @@ namespace Mikencoderx.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Registros",
+                columns: table => new
+                {
+                    PkRegistro = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Accion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FkUsuarios = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Registros", x => x.PkRegistro);
+                    table.ForeignKey(
+                        name: "FK_Registros_Usuarios_FkUsuarios",
+                        column: x => x.FkUsuarios,
+                        principalTable: "Usuarios",
+                        principalColumn: "PkUsuario",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Lista_PL_FkProgramadores",
                 table: "Lista_PL",
@@ -230,6 +249,11 @@ namespace Mikencoderx.Migrations
                 name: "IX_Registros_FkUsuarios",
                 table: "Registros",
                 column: "FkUsuarios");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_FkRoles",
+                table: "Usuarios",
+                column: "FkRoles");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -244,7 +268,7 @@ namespace Mikencoderx.Migrations
                 name: "Registros");
 
             migrationBuilder.DropTable(
-                name: "Lenguajes");
+                name: "Tecnologias");
 
             migrationBuilder.DropTable(
                 name: "Clientes");
@@ -260,6 +284,9 @@ namespace Mikencoderx.Migrations
 
             migrationBuilder.DropTable(
                 name: "Programadores");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
         }
     }
 }

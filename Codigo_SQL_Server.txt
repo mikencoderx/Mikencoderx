@@ -1,74 +1,71 @@
-﻿
-insert into Programadores values(
+﻿insert into Programadores values(
 'David Baca',
 'https://raw.githubusercontent.com/mikencoderx/fotos/main/foto.jpg',
 'finalmente.me.encontraste@gmail.com',
-'Estudiante de la Universidad Politecnica de Quintana Roo, cuenta con experiencia desarrollando paginas web desde hace 3 años'
+'Estudiante de la Universidad Politecnica de Quintana Roo, cuenta con experiencia desarrollando paginas web desde hace 3 años',
+1
 )
 
 insert into Programadores values(
 'Yeimi Ceballos',
 'https://raw.githubusercontent.com/mikencoderx/fotos/main/WhatsApp%20Image%202022-11-13%20at%205.03.40%20PM.jpeg',
 'Yeimi.ceballos@gmail.com',
-'Estudiante de la Universidad Politecnica de Quintana Roo cuenta con experiencia desarrollando paginas web y estructuras web'
+'Estudiante de la Universidad Politecnica de Quintana Roo cuenta con experiencia desarrollando paginas web y estructuras web',
+1
 )
 
 insert into Programadores values(
 'Citlali Aranda',
 'https://raw.githubusercontent.com/mikencoderx/fotos/main/citla.jpg',
 'Citlali.Aranda@gmail.com',
-'Estudiante de la Universidad Politecnica de Quintana Roo cuenta con experiencia en ventas y estructura de base de datos'
+'Estudiante de la Universidad Politecnica de Quintana Roo cuenta con experiencia en ventas y estructura de base de datos',
+1
 )
 
 insert into Programadores values(
 'Armin Borges',
 'https://raw.githubusercontent.com/mikencoderx/fotos/main/armin.png',
 'Armin.Borges@gmail.com',
-'Estudiante de la Universidad Politecnica de Quintana Roo cuenta con experiencia en estructura de base de datos y disño de interfaces'
+'Estudiante de la Universidad Politecnica de Quintana Roo cuenta con experiencia en estructura de base de datos y disño de interfaces',
+1
 )
 
 insert into Programadores values(
 'Diana Dzul',
 'https://raw.githubusercontent.com/mikencoderx/fotos/main/diana.jpg',
 'Diana.Dzul@gmail.com',
-'Estudiante de la Universidad Politecnica de Quintana Roo, cuenta con experiencia en modelado de proyectos y conexion de controladores'
+'Estudiante de la Universidad Politecnica de Quintana Roo, cuenta con experiencia en modelado de proyectos y conexion de controladores',
+1
 )
 
-insert into Administradores values (
+insert into roles values(
+'supervisor'
+)
+
+insert into roles values(
+'administrador'
+)
+
+insert into Usuarios values (
 'David Stephen Baca Pastor',
 'finalmente.me.encontraste@gmail.com',
 '9984173575',
 '15011987',
-'Admin'
+'user',
+2
 )
 
-insert into Clientes values(
-'Betty May',
-'99847515',
-'bet@gmail.com',
-'BAPM050214'
-)
-
-insert into Clientes values(
-'Jesus David',
-'9985847162',
-'jd@gmail.com',
-'JDBP050194'
-)
-
-insert into Proyectos values(
-'apoyo-econimico.com',
-'master-apoyo-econimico.com',
-0,
+insert into Usuarios values (
+'Maria jose',
+'maria-jose@gmail.com',
+'9984173575',
+'123',
+'admin',
 1
 )
 
-insert into planes values (
-'Mensual',
-30,
-255,
-1
-)
+
+
 
 create PROCEDURE Recargar
 @PkProyecto int = null

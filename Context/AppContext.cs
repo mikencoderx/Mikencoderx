@@ -12,10 +12,11 @@ namespace Mikencoderx.Context
         public DbSet<Proyectos> Proyectos { get; set; }
         public DbSet<Membresias> Membresias { get; set; }
         public DbSet<Planes> Planes { get; set; }   
-        public DbSet<Tecnologias> Lenguajes { get; set; }
+        public DbSet<Tecnologias> Tecnologias { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Lista_PL> Lista_PL { get; set; }
         public DbSet<Registros> Registros { get; set; }
+        public DbSet<Roles> Roles { get; set; }
 
     }
 }

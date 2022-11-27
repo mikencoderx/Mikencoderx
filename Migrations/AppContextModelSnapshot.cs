@@ -227,6 +227,23 @@ namespace Mikencoderx.Migrations
                     b.ToTable("Registros");
                 });
 
+            modelBuilder.Entity("Mikencoderx.Models.Roles", b =>
+                {
+                    b.Property<int>("PkRol")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkRol"), 1L, 1);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PkRol");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("Mikencoderx.Models.Tecnologias", b =>
                 {
                     b.Property<int>("PkTecnologias")
@@ -245,7 +262,7 @@ namespace Mikencoderx.Migrations
 
                     b.HasKey("PkTecnologias");
 
-                    b.ToTable("Lenguajes");
+                    b.ToTable("Tecnologias");
                 });
 
             modelBuilder.Entity("Mikencoderx.Models.Usuarios", b =>
@@ -264,6 +281,9 @@ namespace Mikencoderx.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("FkRoles")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -276,11 +296,9 @@ namespace Mikencoderx.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("rol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("PkUsuario");
+
+                    b.HasIndex("FkRoles");
 
                     b.ToTable("Usuarios");
                 });
@@ -351,6 +369,17 @@ namespace Mikencoderx.Migrations
                         .IsRequired();
 
                     b.Navigation("Usuarios");
+                });
+
+            modelBuilder.Entity("Mikencoderx.Models.Usuarios", b =>
+                {
+                    b.HasOne("Mikencoderx.Models.Roles", "Roles")
+                        .WithMany()
+                        .HasForeignKey("FkRoles")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }
