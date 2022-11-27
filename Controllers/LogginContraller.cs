@@ -28,7 +28,7 @@ namespace Mikencoderx.Controllers
         {
             try
             {
-                var response = _context.Administradores.Where(x => x.Usuario == user && x.Contraseña == Password).ToList();
+                var response = _context.Usuarios.Where(x => x.Usuario == user && x.Contraseña == Password).ToList();
                 if (response.Count() > 0)
                 {
                     //se va a logear
