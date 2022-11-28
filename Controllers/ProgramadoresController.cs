@@ -19,6 +19,17 @@ namespace Mikencoderx.Controllers
 
         public async Task<IActionResult> Index()
         {
+            try
+            {
+                if(TempData != null)
+                {
+                    ViewBag.sms = TempData["sms"].ToString();
+                }
+            }
+            catch
+            {
+
+            }
             var programadores = await _context.Programadores.ToListAsync();
             return View(programadores);
         }
@@ -140,6 +151,35 @@ namespace Mikencoderx.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Eliminar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var programador = _context.Programadores.Find(id);
+            if (programador == null)
+            {
+                return NotFound();
+            }
+
+            var Proyectos = _context.Proyectos.Where(x => x.FkProgramadores == programador.PkPrgramadores).FirstOrDefault();
+            if (Proyectos == null)
+            {
+                _context.Programadores.Remove(programador);
+                _context.SaveChanges();
+            }
+            else
+            {
+                TempData["sms"] = "Modifique o elimina los proyectos de " + programador.Nombre+" para poder Eliminarlo";
+                ViewBag.sms = TempData["sms"];
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
         }
     }
 }

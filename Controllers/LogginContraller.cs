@@ -6,16 +6,18 @@ using System;
 using System.Data;
 using Mikencoderx.Models;
 using AppContext = Mikencoderx.Context.AppContext;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Mikencoderx.Controllers
 {
     public class LogginContraller : Controller
     {
+        private readonly IHttpContextAccessor _Acess;
         private readonly AppContext _context;
-        public LogginContraller( AppContext context)
+        public LogginContraller(AppContext context, IHttpContextAccessor acess)
         {
             _context = context;
+            _Acess = acess;
         }
 
         public IActionResult Index()
@@ -28,9 +30,11 @@ namespace Mikencoderx.Controllers
         {
             try
             {
-                var response = _context.Usuarios.Where(x => x.Usuario == user && x.Contraseña == Password).ToList();
-                if (response.Count() > 0)
+                var response = _context.Usuarios.Include(i=>i.Roles).Where(x => x.Usuario == user && x.Contraseña == Password).FirstOrDefault();
+                if (response != null)
                 {
+                    _Acess.HttpContext.Session.SetString("Rol", response.Roles.Nombre);
+                    _Acess.HttpContext.Session.SetInt32("Pk", response.PkUsuario);
                     //se va a logear
                     return Json(new { success = true });
                 }
