@@ -22,6 +22,10 @@ namespace Mikencoderx.Controllers
 
         public IActionResult Index()
         {
+            if(_Acess.HttpContext.Session.GetString("Rol") != null )
+            {
+                return Redirect("~/Programadores/Index");
+            }
             return View();
         }
 

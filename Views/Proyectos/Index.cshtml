@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Mikencoderx.Models.Proyectos>
+﻿@inject IHttpContextAccessor _Acess
+@model IEnumerable<Mikencoderx.Models.Proyectos>
 @{
     Layout = "_Lateral";
     ViewData["Title"] = "Proyectos";
@@ -16,6 +17,12 @@
                     + Agregar
                 </a>
             </div>
+         @if (@ViewBag.sms != null)
+        {
+                        <div class="alert alert-danger p-2">
+                @ViewBag.sms
+                        </div>
+        }
         </div>
         <div class="tabla">
             <table class="table tabla-cont">

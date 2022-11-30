@@ -21,7 +21,8 @@ namespace Mikencoderx.Controllers
         {
             try
             {
-                if(TempData != null)
+
+                if (TempData.Count() >0 )
                 {
                     ViewBag.sms = TempData["sms"].ToString();
                 }
