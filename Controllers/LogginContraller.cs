@@ -22,16 +22,17 @@ namespace Mikencoderx.Controllers
 
         public IActionResult Index()
         {
-            if(_Acess.HttpContext.Session.GetString("Rol") != null )
+            if(_Acess.HttpContext.Session.GetString("Rol") == null )
             {
-                return Redirect("~/Programadores/Index");
+                return View();                
             }
-            return View();
+            return Redirect("~/Programadores/Index");
         }
 
         [HttpPost]
         public JsonResult LoginUser(string user, string Password)
         {
+
             try
             {
                 var response = _context.Usuarios.Include(i=>i.Roles).Where(x => x.Usuario == user && x.Contraseña == Password).FirstOrDefault();

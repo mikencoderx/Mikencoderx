@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
@@ -11,25 +12,26 @@ namespace Mikencoderx.Controllers
 {
     public class ProgramadoresController : Controller
     {
+        private readonly IHttpContextAccessor _Acess;
         private readonly AppContext _context;
-        public ProgramadoresController(AppContext context)
+        public ProgramadoresController(AppContext context, IHttpContextAccessor acess)
         {
             _context = context;
+            _Acess = acess;
         }
 
         public async Task<IActionResult> Index()
         {
-            try
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
             {
-
-                if (TempData.Count() >0 )
-                {
-                    ViewBag.sms = TempData["sms"].ToString();
-                }
+                return Redirect("~/LogginContraller/Index");
             }
-            catch
-            {
+            //no eliminar
 
+            if (TempData.Count() >0 )
+            {
+                ViewBag.sms = TempData["sms"].ToString();
             }
             var programadores = await _context.Programadores.ToListAsync();
             return View(programadores);
@@ -37,6 +39,13 @@ namespace Mikencoderx.Controllers
 
         public async Task<IActionResult> Crear()
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             ViewBag.Programadores = _context.Programadores.Select(p => new SelectListItem()
             {
                 Text = p.Nombre,
@@ -48,6 +57,13 @@ namespace Mikencoderx.Controllers
         [HttpPost]
         public async Task<IActionResult> CrearProgramador(Programadores request)
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             if (request != null)
             {
                 Programadores programador = new Programadores();
@@ -64,6 +80,13 @@ namespace Mikencoderx.Controllers
         [HttpPost]
         public async Task<IActionResult> CrearMembresias(Membresias request)
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             if (request != null)
             {
                 Membresias programador = new Membresias();
@@ -80,6 +103,13 @@ namespace Mikencoderx.Controllers
         [HttpGet]
         public IActionResult Editar(int? id)
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             if (id == null)
             {
                 return NotFound();
@@ -97,6 +127,13 @@ namespace Mikencoderx.Controllers
         [HttpPost]
         public async Task<IActionResult> EditarProgramador(Programadores request)
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             if (request != null)
             {
                 Programadores programador = _context.Programadores.Find(request.PkPrgramadores);
@@ -116,6 +153,13 @@ namespace Mikencoderx.Controllers
 
         public async Task<IActionResult> On(int? id)
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             if (id == null)
             {
                 return NotFound();
@@ -136,6 +180,13 @@ namespace Mikencoderx.Controllers
 
         public async Task<IActionResult> Off(int? id)
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             if (id == null)
             {
                 return NotFound();
@@ -156,10 +207,12 @@ namespace Mikencoderx.Controllers
 
         public async Task<IActionResult> Eliminar(int? id)
         {
-            if (id == null)
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
             {
-                return NotFound();
+                return Redirect("~/LogginContraller/Index");
             }
+            //no eliminar
 
             var programador = _context.Programadores.Find(id);
             if (programador == null)
@@ -177,10 +230,10 @@ namespace Mikencoderx.Controllers
             {
                 TempData["sms"] = "Modifique o elimina los proyectos de " + programador.Nombre+" para poder Eliminarlo";
                 ViewBag.sms = TempData["sms"];
-                return RedirectToAction(nameof(Index));
             }
 
-            return View();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

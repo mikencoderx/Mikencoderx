@@ -8,18 +8,16 @@ namespace Mikencoderx.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly AppContext _context;
-
-        public HomeController(ILogger<HomeController> logger, AppContext context)
+        public HomeController(AppContext context, IHttpContextAccessor acess)
         {
-            _logger = logger; 
             _context = context;
         }
 
+
+
         public async Task<IActionResult> Index()
         {
-
             var programadores = await _context.Programadores.ToListAsync();
             return View(programadores);
         }
