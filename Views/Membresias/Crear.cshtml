@@ -9,17 +9,22 @@
 			<h1>
 				@ViewData["Title"]
 			</h1>
-		</div>
+		</div><form asp-action="Crear-Membresias" method="post" class="col-md-5 col-12">
 		<div class="col-12 mt-3">
 			<h5 class="text-secondary">
-				nombre Cliente
+				SELECCIONA UN CLIENTE
 			</h5>
-			<form>
-					<input asp-for="Clientes" type="text" class="form-control" required
-					placeholder="Nombre cliente">
-			</form>
-			
-			
+			<select asp-for="FkClientes" asp-items="ViewBag.Clientes" class="form-select" required
+			     placeholder="Nombre cliente">
+				</select>
 		</div>
+		        <div class="col-12 mt-3">
+			          <h5 class="text-secondary">
+				       Nombre del proyecto
+			          </h5>
+			          <input asp-for="Proyectos" type="text" class="form-control" required
+		               placeholder="Nombre del proyecto">		
+	            </div>
+		       </form>
 	</div>
 </div>
