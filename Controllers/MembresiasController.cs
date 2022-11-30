@@ -13,7 +13,7 @@ namespace Mikencoderx.Controllers
     public class MembresiasController : Controller
     {
         private readonly AppContext _Context;
-        SqlConnection connect = new SqlConnection("Data Source =DESKTOP-P1P9ODQ;initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
+        SqlConnection connect = new SqlConnection("Data Source =DESKTOP-EO6SUQ1;initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
         public MembresiasController(AppContext context)
         {
             _Context = context;
@@ -22,9 +22,9 @@ namespace Mikencoderx.Controllers
 
         public IActionResult Index()
         {
-           
+           var membresia = _Context.Membresias.ToList();
             
-            return View();
+            return View(membresia);
         }
 
         public IActionResult Crear()
@@ -46,7 +46,10 @@ namespace Mikencoderx.Controllers
                 Membresias membresia = new Membresias();
                 membresia = request;
                 membresia.PkMembresias = request.PkMembresias;
-                
+                membresia.FkClientes = request.FkClientes;
+                membresia.FechaApertura = request.FechaApertura;
+                membresia.FechaVencimiento = request.FechaVencimiento;
+
                _Context.Membresias.Add(membresia);
                 await _Context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -71,6 +74,12 @@ namespace Mikencoderx.Controllers
             {
                 Text = c.Nombre,
                 Value = c.PkCliente.ToString()
+            });
+            
+            ViewBag.Planes = _Context.Planes.Where(x=>x.Estado==true).Select(c => new SelectListItem()
+            {
+                Text = c.Tipo,
+                Value = c.PkPlanes.ToString()
             });
             return View(membresias);
         }

@@ -1,6 +1,25 @@
 ﻿@model Mikencoderx.Models.Membresias
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
+	Layout="_Lateral";
+	ViewData["Title"] = "Crear Membresias";
 }
+<div class="container ps-5 pt-5">
+	<div class="row justify-content-center mt-5 mb-5">
+		<div class="col-12 mt-5 mb-2">
+			<h1>
+				@ViewData["Title"]
+			</h1>
+		</div>
+		<div class="col-12 mt-3">
+			<h5 class="text-secondary">
+				nombre Cliente
+			</h5>
+			<form>
+					<input asp-for="Clientes" type="text" class="form-control" required
+					placeholder="Nombre cliente">
+			</form>
+			
+			
+		</div>
+	</div>
+</div>
