@@ -1,0 +1,86 @@
+
+
+h1 {
+    padding : 50px;
+    top : 300px;
+}
+
+.buttonP1{
+    display:inline-block;
+    font-size:1.2em;
+    padding:1.2em 1.5em; 
+    font-family:Gill Sans, "Gill Sans", sans-serif;
+    font-weight:700;
+    letter-spacing:-1px;
+    text-transform:uppercase;
+    text-decoration:none;
+    margin:3em;
+    color: white;
+    border-color: #5271FF ;
+    transition:all 0.3s linear;
+    animation-iteration-count: infinite;
+    background-color: #5271FF;
+   
+  }
+
+  .button1{
+    animation-duration: 2s;
+    animation-name: shrink;
+ }
+
+
+ @keyframes shrink {
+    0% {
+      transform: scaleY(1);
+    }
+  
+    49% {
+      transform: scale(0.97, 0.97);
+    }
+  
+   100% {
+      transform: scaleY(1);
+    }
+  
+  }
+  
+
+  .buttonP2{
+    display:inline-block;
+    font-size:1.2em;
+    padding:1.2em 1.5em; 
+    font-family:Gill Sans, "Gill Sans", sans-serif;
+    font-weight:700;
+    letter-spacing:-1px;
+    text-transform:uppercase;
+    text-decoration:none;
+    margin:3em;
+    color: white;
+    border-color: #38BD71 ;
+    transition:all 0.3s linear;
+    animation-iteration-count: infinite;
+    background-color: #38BD71;
+   
+  }
+
+  .button2{
+    animation-duration: 2s;
+    animation-name: shrink;
+ }
+
+
+ @keyframes shrink {
+    0% {
+      transform: scaleY(1);
+    }
+  
+    49% {
+      transform: scale(0.97, 0.97);
+    }
+  
+   100% {
+      transform: scaleY(1);
+    }
+  
+  }
+  
