@@ -11,6 +11,7 @@ namespace Mikencoderx.Controllers
 {
     public class ProyectosController : Controller
     {
+        Controlador_de_Session
         SqlConnection connect = new SqlConnection("Data Source = DESKTOP-FSE1RT4; initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
         private readonly IHttpContextAccessor _Acess;
         private readonly AppContext _context;
