@@ -12,23 +12,38 @@ namespace Mikencoderx.Controllers
 {
     public class MembresiasController : Controller
     {
+        private readonly IHttpContextAccessor _Acess;
         private readonly AppContext _Context;
-        SqlConnection connect = new SqlConnection("Data Source =DESKTOP-P1P9ODQ;initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
-        public MembresiasController(AppContext context)
+        public MembresiasController(AppContext context, IHttpContextAccessor acess)
         {
             _Context = context;
+            _Acess = acess;
         }
-        
+
 
         public IActionResult Index()
         {
-           var membresia = _Context.Membresias.ToList();
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
+            var membresia = _Context.Membresias.ToList();
             
             return View(membresia);
         }
 
         public IActionResult Crear()
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             ViewBag.Clientes = _Context.Clientes.Select(c => new SelectListItem()
             {
                 Text = c.Nombre,
@@ -41,6 +56,13 @@ namespace Mikencoderx.Controllers
         [HttpPost]
         public async Task<IActionResult> CrearMembresias (Membresias request)
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             if (Request == null)
             {
                 Membresias membresia = new Membresias();
@@ -59,6 +81,13 @@ namespace Mikencoderx.Controllers
         [HttpGet]
         public IActionResult Editar (int? id ) 
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             if (id == null)
             {
                 return NotFound();

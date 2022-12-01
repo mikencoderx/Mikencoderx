@@ -64,6 +64,12 @@ insert into Usuarios values (
 1
 )
 
+insert into planes values (
+'normal-quincenal',
+15,
+125.5,
+1
+)
 
 
 
