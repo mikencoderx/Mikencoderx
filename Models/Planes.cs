@@ -10,7 +10,5 @@ namespace Mikencoderx.Models
         public int dias { get; set; }
         public double Cantidad { get; set; }
         public bool Estado { get; set; }
-
-
     }
 }

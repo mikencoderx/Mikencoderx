@@ -11,11 +11,14 @@ namespace Mikencoderx.Controllers
 {
     public class ProyectosController : Controller
     {
+        Controlador_de_Session
+        SqlConnection connect = new SqlConnection("Data Source = DESKTOP-FSE1RT4; initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
+        private readonly IHttpContextAccessor _Acess;
         private readonly AppContext _context;
-        SqlConnection connect = new SqlConnection("Data Source = DESKTOP-UG8QV26; initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
-        public ProyectosController(AppContext context)
+        public ProyectosController(AppContext context, IHttpContextAccessor acess)
         {
             _context = context;
+            _Acess = acess;
         }
 
         public void recargar()
@@ -25,6 +28,13 @@ namespace Mikencoderx.Controllers
 
         public async Task<IActionResult> Index()
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             recargar();
             var proyectos = await _context.Proyectos.Include(z => z.Programadores).ToListAsync();
             return View(proyectos);
@@ -32,6 +42,13 @@ namespace Mikencoderx.Controllers
 
         public IActionResult Crear()
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             ViewBag.Programadores = _context.Programadores.Select(p => new SelectListItem()
             {
                 Text = p.Nombre,
@@ -43,7 +60,14 @@ namespace Mikencoderx.Controllers
         [HttpPost]
         public async Task<IActionResult> CrearProyecto (Proyectos request)
         {
-            if(request != null)
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
+            if (request != null)
             {
                 Proyectos proyecto = new Proyectos();
                 proyecto = request;
@@ -60,6 +84,13 @@ namespace Mikencoderx.Controllers
         [HttpGet]
         public IActionResult Editar(int? id)
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
             if (id == null)
             {
                 return NotFound();
@@ -84,6 +115,12 @@ namespace Mikencoderx.Controllers
         [HttpPost]
         public async Task<IActionResult> EditarProyecto(Proyectos response)
         {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
 
             Proyectos proyecto = _context.Proyectos.Find(response.PkProyecto);
 

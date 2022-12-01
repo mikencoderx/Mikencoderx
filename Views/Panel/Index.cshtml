@@ -1,0 +1,37 @@
+﻿@inject IHttpContextAccessor _Acess
+@{
+    Layout = "_Lateral";
+    ViewData["Title"] = "Panel";
+}
+<div class="container ps-5 pt-5">
+    <div class="row justify-content-between mt-5 mb-5">
+        <div class="col-auto">
+            <h1>
+                Buenos dias @_Acess.HttpContext.Session.GetString("Nombre")
+            </h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 alert alert-primary text-black-50 p-5">
+                <h1>Administrador de Tecnologias</h1>
+                <h5>Conjunto de tecnologias visibles en la pantalla de 
+                    la interfas de usuario
+                </h5>
+                <a asp-controller="Tecnologias" asp-action="Index" class="btn btn-primary">Administrar</a>
+            </div>
+
+            <div class="col-12 alert alert-info text-black-50 p-5">
+                <h1>Administrador de Planes</h1>
+                <h5>Sector de ofertas que se mostraran en la pantalla de 
+                    la interfas de usuario
+                </h5>
+                <a asp-controller="Planes" asp-action="Index" class="btn btn-light text-secondary">Administrar</a>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
