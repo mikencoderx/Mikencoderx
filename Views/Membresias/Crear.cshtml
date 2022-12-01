@@ -4,27 +4,67 @@
 	ViewData["Title"] = "Crear Membresias";
 }
 <div class="container ps-5 pt-5">
-	<div class="row justify-content-center mt-5 mb-5">
-		<div class="col-12 mt-5 mb-2">
-			<h1>
-				@ViewData["Title"]
-			</h1>
-		</div><form asp-action="Crear-Membresias" method="post" class="col-md-5 col-12">
-		<div class="col-12 mt-3">
-			<h5 class="text-secondary">
-				SELECCIONA UN CLIENTE
-			</h5>
-			<select asp-for="FkClientes" asp-items="ViewBag.Clientes" class="form-select" required
-			     placeholder="Nombre cliente">
-				</select>
-		</div>
-		        <div class="col-12 mt-3">
-			          <h5 class="text-secondary">
-				       Nombre del proyecto
-			          </h5>
-			          <input asp-for="Proyectos" type="text" class="form-control" required
-		               placeholder="Nombre del proyecto">		
-	            </div>
-		       </form>
-	</div>
-</div>
+                <div class="row justify-content-center mt-5 mb-5">
+                    <form asp-action="Crear Membresias" method="post" class="col-md-5 col-12">
+                        
+                        <div class="col-12 mt-5 mb-2">
+                            <h1>
+                    @ViewData["Title"]
+                            </h1>
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Nombre del cliente
+                            </h5>
+                            <input asp-for="Clientes" type="text" class="form-control" required
+                                placeholder="Nombre del cliente">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Nombre del Proyecto 
+                            </h5>
+                            <input asp-for="FkProyecto" type="text" class="form-control" required
+                                placeholder="Nombre del Proyecto">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Seleccionar Plan
+                            </h5>
+                            <select asp-for="FkPlanes" asp-items=" ViewBag.Planes" class="form-select" required="">
+                                <option value="">Selecciona</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Fecha de Apertura
+                            </h5>
+                            <input asp-for="FechaApertura" type="date" class="form-control" required 
+                            placeholder="YY/MM/DD">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                             <h5 class="text-secondary">
+                                  Fecha de Vencimiento
+                             </h5>
+                            <input asp-for="FechaVencimiento" type="date" class="form-control" required
+                                placeholder="YY/MM/DD">
+                        </div>
+
+                        <div class="col-12 mt-3">
+
+                            <a asp-action="Index"
+                            class="link link-primary text-decoration-none text-primary
+                            text-opacity-75 me-5">
+                                Regresar</a>
+
+                            <button type="submit" class="btn btn-primary">
+                                Guardar
+                            </button>                    
+                        </div>
+                    </form>
+                </div>
+ </div>

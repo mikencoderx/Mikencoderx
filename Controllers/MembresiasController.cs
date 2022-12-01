@@ -13,7 +13,7 @@ namespace Mikencoderx.Controllers
     public class MembresiasController : Controller
     {
         private readonly AppContext _Context;
-        SqlConnection connect = new SqlConnection("Data Source =DESKTOP-EO6SUQ1;initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
+        SqlConnection connect = new SqlConnection("Data Source =DESKTOP-P1P9ODQ;initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
         public MembresiasController(AppContext context)
         {
             _Context = context;
@@ -70,12 +70,6 @@ namespace Mikencoderx.Controllers
                 return NotFound();
             }
 
-            ViewBag.Clientes = _Context.Clientes.Select(c => new SelectListItem()
-            {
-                Text = c.Nombre,
-                Value = c.PkCliente.ToString()
-            });
-            
             ViewBag.Planes = _Context.Planes.Where(x=>x.Estado==true).Select(c => new SelectListItem()
             {
                 Text = c.Tipo,
