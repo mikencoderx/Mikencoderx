@@ -39,6 +39,7 @@ namespace Mikencoderx.Controllers
                 if (response != null)
                 {
                     _Acess.HttpContext.Session.SetString("Rol", response.Roles.Nombre);
+                    _Acess.HttpContext.Session.SetString("Nombre", response.Nombre);
                     _Acess.HttpContext.Session.SetInt32("Pk", response.PkUsuario);
                     //se va a logear
                     return Json(new { success = true });
@@ -53,6 +54,12 @@ namespace Mikencoderx.Controllers
             {
                 throw new Exception("Surgio un eror" + ex.Message);
             }
+        }
+
+        public IActionResult Cerrar()
+        {
+            _Acess.HttpContext.Session.Clear();
+            return RedirectToAction(nameof(Index));
         }
 
     }
