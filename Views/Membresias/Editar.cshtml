@@ -1,0 +1,54 @@
+﻿@model Mikencoderx.Models.Membresias
+@{
+    Layout = "_Lateral";
+    ViewData["Title"] = "Editar Membresias";
+}
+<div class="container ps-5 pt-5">
+    <div class="row justify-content-center mt-5 mb-5">
+        <form asp-action="EditarMembresias" method="post" class="col-mb-5 col-12">
+            <div class="col-12 mt-5 mb-2">
+                <h1>
+                    @ViewData["Title"]
+                </h1>
+                <input type="hidden" asp-for="PkMembresias"/>
+                <div class="col-12 mt-3">
+                    <h5 class="text-secondary">
+                        Seleccionar Cliente  
+                    </h5>
+                    <select asp-for="FkClientes" asp-items="ViewBag.Clientes" class="form-select" required="">
+                        <option value="">Selecciona</option>
+                    </select>
+                </div>
+                <div class="col-12 mt-3">
+                    <h5 class="text-secondary">
+                        Seleccionar Proyectos
+                    </h5>
+                    <select asp-for="FkProyecto" asp-items="ViewBag.Proyectos" class="form-select" required="">
+                        <option value="">Selecciona</option>
+                    </select>
+                </div>
+                <div class="col-12 mt-3">
+                    <h5 class="text-secondary">
+                        Selecionar Plan
+                    </h5>
+                    <select asp-for="FkPlanes" asp-items="ViewBag.Planes" class="form-select" required="">
+                        <option value="">Selecciona</option>
+                    </select>
+                </div>
+                
+                <div class="col-12 mt-3">
+
+                    <a asp-area="" asp-controller="Membresias" asp-action="Index"
+                       class="link link-primary text-decoration-none text-primary
+                            text-opacity-75 me-5">
+                        Regresar
+                    </a>
+
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
