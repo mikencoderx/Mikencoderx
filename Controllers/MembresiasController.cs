@@ -13,6 +13,7 @@ namespace Mikencoderx.Controllers
     public class MembresiasController : Controller
     {
         private readonly IHttpContextAccessor _Acess;
+        SqlConnection connect = new SqlConnection("Data Source = DESKTOP-FSE1RT4; initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
         private readonly AppContext _Context;
         public MembresiasController(AppContext context, IHttpContextAccessor acess)
         {
@@ -20,6 +21,10 @@ namespace Mikencoderx.Controllers
             _Acess = acess;
         }
 
+        public void recargar()
+        {
+            connect.Query("Recargar", new { }, commandType: CommandType.StoredProcedure);
+        }
 
         public async Task <IActionResult> Index()
         {
@@ -29,14 +34,17 @@ namespace Mikencoderx.Controllers
                 return Redirect("~/LogginContraller/Index");
             }
             //no eliminar
+            recargar();
+            if (TempData["sms"] != null)
+            {
+                ViewBag.sms = TempData["sms"].ToString();
+            }
 
-            
             var membresia = await _Context.Membresias
                 .Include(x =>x.Clientes)
                 .Include(x => x.Proyectos)
                 .Include(x => x.Planes)                
                 .ToListAsync();
-            
             return View(membresia);
         }
 
@@ -83,7 +91,18 @@ namespace Mikencoderx.Controllers
             {
                 Membresias membresia = new Membresias();
                 membresia = request;
+                membresia.FechaApertura = DateTime.Now;
 
+                var plan = _Context.Planes.Where(x => x.PkPlanes == membresia.FkPlanes).FirstOrDefault();
+
+                membresia.FechaVencimiento = DateTime.Now.AddDays(plan.dias);
+                var proyecto = _Context.Proyectos.Where(x=>x.PkProyecto == membresia.FkProyecto).FirstOrDefault();
+                if(proyecto.Estado == true)
+                {
+                    TempData["sms"] = "No se puede agregar una membresia a " +proyecto.Nombre+" por que actualmente ya tiene una activa";
+                    ViewBag.sms = TempData["sms"];
+                    return RedirectToAction(nameof(Index));
+                }
                _Context.Membresias.Add(membresia);
                 await _Context.SaveChangesAsync();
 
@@ -141,11 +160,12 @@ namespace Mikencoderx.Controllers
             {
                 Membresias membresia = _Context.Membresias.Find(request.PkMembresias);
 
-                membresia.Clientes.Nombre = request.Clientes.Nombre;
-                membresia.Proyectos.Nombre = request.Proyectos.Nombre;
-                membresia.Planes.Tipo = request.Planes.Tipo;
+                membresia.FkClientes = request.FkClientes;
+                membresia.FkProyecto = request.FkProyecto;
+                membresia.FkPlanes = request.FkPlanes;
                 membresia.FechaApertura = request.FechaApertura;
-                membresia.FechaVencimiento = request.FechaVencimiento;
+                var plan = _Context.Planes.Where(x => x.PkPlanes == membresia.FkPlanes).FirstOrDefault();
+                membresia.FechaVencimiento = membresia.FechaApertura.AddDays(plan.dias);
 
                 _Context.Entry(membresia).State = EntityState.Modified;
                 await _Context.SaveChangesAsync();
@@ -153,6 +173,24 @@ namespace Mikencoderx.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View();
+        }
+        public async Task<IActionResult> Eliminar(int? id)
+        {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
+            var membresia = _Context.Membresias.Find(id);
+            if (membresia == null)
+            {
+                return NotFound();
+            }
+            _Context.Membresias.Remove(membresia);
+            _Context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

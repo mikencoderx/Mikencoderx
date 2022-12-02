@@ -33,8 +33,11 @@ namespace Mikencoderx.Controllers
                 return Redirect("~/LogginContraller/Index");
             }
             //no eliminar
-
             recargar();
+            if (TempData["sms"] != null)
+            {
+                ViewBag.sms = TempData["sms"].ToString();
+            }
             var proyectos = await _context.Proyectos.Include(z => z.Programadores).ToListAsync();
             return View(proyectos);
         }
@@ -133,6 +136,36 @@ namespace Mikencoderx.Controllers
 
             return RedirectToAction(nameof(Index));
 
+        }
+        public async Task<IActionResult> Eliminar(int? id)
+        {
+            //comprobacion de que el usuario este logeado -|
+            if (_Acess.HttpContext.Session.GetString("Rol") == null)
+            {
+                return Redirect("~/LogginContraller/Index");
+            }
+            //no eliminar
+
+            var proyecto = _context.Proyectos.Find(id);
+            if (proyecto == null)
+            {
+                return NotFound();
+            }
+
+            var membresias = _context.Membresias.Where(x => x.FkProyecto == proyecto.PkProyecto).FirstOrDefault();
+            if (membresias == null)
+            {
+                _context.Proyectos.Remove(proyecto);
+                _context.SaveChanges();
+            }
+            else
+            {
+                TempData["sms"] = "Modifique o elimina las membresias de " + proyecto.Nombre+" para poder Eliminarlo";
+                ViewBag.sms = TempData["sms"];
+            }
+
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

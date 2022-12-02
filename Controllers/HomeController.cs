@@ -18,9 +18,9 @@ namespace Mikencoderx.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var programadores = await _context.Programadores.ToListAsync();
+            var programadores = await _context.Programadores.Where(x=>x.Estado == true).ToListAsync();
             var tecnologias = await _context.Tecnologias.ToListAsync();
-            var planes = await _context.Planes.ToListAsync();
+            var planes = await _context.Planes.Where(x => x.Estado == true).ToListAsync();
 
             Coleccion x = new Coleccion();
             x.Planes = planes;

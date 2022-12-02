@@ -47,29 +47,23 @@ insert into roles values(
 )
 
 insert into Usuarios values (
-'David Stephen Baca Pastor',
+'Dueño de @mikencoderx',
 'finalmente.me.encontraste@gmail.com',
 '9984173575',
 '15011987',
-'user',
+'admin',
 2
 )
 
 insert into Usuarios values (
-'Maria jose',
+'Elisabeth Carrillo',
 'maria-jose@gmail.com',
 '9984173575',
 '123',
-'admin',
+'user',
 1
 )
 
-insert into planes values (
-'normal-quincenal',
-15,
-125.5,
-1
-)
 
 
 
