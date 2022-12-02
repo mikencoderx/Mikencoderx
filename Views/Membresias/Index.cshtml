@@ -11,7 +11,8 @@
             </h1>
         </div>
         <div class="col-auto">
-            <a asp-area="" asp-controller="Membresias" asp-action="Crear" class="btn btn-outline-morado animate h1">
+            <a asp-area="" asp-action="Crear" 
+            class="btn btn-outline-morado animate h1">
                 +Agregar
             </a>
         </div>
@@ -22,31 +23,66 @@
             {
                 <thead class="table-secondary table text-secondary">
                     <tr>
-                        <tr>
-                            @* <th> Id</th>*@
-                           <th> @Html.DisplayNameFor(x => x.Clientes)</th>
-                           <th> @Html.DisplayNameFor(x => x.Proyectos)</th>
-                           <th> @Html.DisplayNameFor(x => x.Planes)</th>
-                           <th> @Html.DisplayNameFor(x => x.FechaApertura)</th>
-                           <th> @Html.DisplayNameFor(x => x.FechaVencimiento)</th>
-                           <th> Acciones</th>
-                        </tr>
-                       
+                        <td>
+                            <h5>
+                                @Html.DisplayNameFor(x=> x.Clientes)
+                            </h5>
+                        </td>
+                        <td>
+                            <h5>
+                                @Html.DisplayNameFor(x=> x.Proyectos)
+                            </h5>
+                        </td>
+                        <td>
+                            <h5>
+                                @Html.DisplayNameFor(x=> x.Planes)
+                            </h5>
+                        </td>
+                        <td>
+                            <h5>
+                                @Html.DisplayNameFor(x=> x.FechaApertura)
+                            </h5>
+                        </td>
+                        <td>
+                            <h5>
+                                @Html.DisplayNameFor(x=> x.FechaVencimiento)
+                            </h5>
+                        </td>
+                        <td>
+                            <h5>Acciones</h5>
+                        </td>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
-
-                            @*<td>(@i++)</td>*@
-
-
-                            <td> @Html.DisplayFor(x => item.Clientes )</td>
-                            <td> @Html.DisplayFor(x => item.Proyectos )</td>
-                            <td> @Html.DisplayFor(x => item.Planes )</td>
-                            <td> @Html.DisplayFor(x => item.FechaApertura)</td>
-                            <td  @Html.DisplayFor(x => item.FechaVencimiento)></td>
+                            <td>
+                                <h5>
+                                    @Html.DisplayFor(x=> item.Clientes.Nombre )
+                                </h5>
+                            </td>
+                            <td>
+                                <h5>
+                                    @Html.DisplayFor(x=> item.Proyectos.Nombre)
+                                </h5>
+                            </td>
+                            <td>
+                                <h5>
+                                    @Html.DisplayFor(x=> item.Planes.Tipo)
+                                </h5>
+                            </td>
+                            <td>
+                                <h5>
+                                    @Html.DisplayFor(x=> item.FechaApertura)
+                                </h5>
+                            </td>
+                            <td>
+                                <h5>
+                                    @Html.DisplayFor(x=> item.FechaVencimiento)
+                                </h5>
+                            </td>
                             <td>
                                 <a asp-action="Editar" asp-route-id=@item.PkMembresias class="btn btn-primary m1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -56,7 +92,6 @@
                                     Editar
                                 </a>
                             </td>
-
                         </tr>
                     }
                 </tbody>
@@ -72,7 +107,6 @@
                         </td>
                     </tr>
                 </thead>
-
             }
         </table>
     </div>

@@ -5,33 +5,35 @@
 }
 <div class="container ps-5 pt-5">
                 <div class="row justify-content-center mt-5 mb-5">
-                    <form asp-action="Crear Membresias" method="post" class="col-md-5 col-12">
+                    <form asp-action="CrearMembresias" method="post" class="col-md-5 col-12">
                         
                         <div class="col-12 mt-5 mb-2">
                             <h1>
-                    @ViewData["Title"]
+                                   @ViewData["Title"]
                             </h1>
                         </div>
 
                         <div class="col-12 mt-3">
                             <h5 class="text-secondary">
-                                Nombre del cliente
+                                    Selecciona Cliente
                             </h5>
-                            <input asp-for="Clientes" type="text" class="form-control" required
-                                placeholder="Nombre del cliente">
+                            <select asp-for="FkClientes" asp-items="ViewBag.Clientes" class="form-select" required="">
+                                <option value="">Selecciona</option>
+                            </select>
                         </div>
 
                         <div class="col-12 mt-3">
                             <h5 class="text-secondary">
-                                Nombre del Proyecto 
+                                Selecciona Proyecto
                             </h5>
-                            <input asp-for="FkProyecto" type="text" class="form-control" required
-                                placeholder="Nombre del Proyecto">
+                            <select asp-for="FkProyecto" asp-items="ViewBag.Proyectos" class="form-select" required="">
+                                <option value="">Selecciona</option>
+                            </select>
                         </div>
 
                         <div class="col-12 mt-3">
                             <h5 class="text-secondary">
-                                Seleccionar Plan
+                                Selecciona Plan
                             </h5>
                             <select asp-for="FkPlanes" asp-items=" ViewBag.Planes" class="form-select" required="">
                                 <option value="">Selecciona</option>
