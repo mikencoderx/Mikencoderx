@@ -17,10 +17,6 @@
     background-size: 100% auto;
 }
 
-.table tbody{
-    vertical-align: middle;
-}
-
 @media screen and (max-width: 70rem) {
     #menu.active:before {
         content: '';

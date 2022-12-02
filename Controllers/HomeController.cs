@@ -19,7 +19,15 @@ namespace Mikencoderx.Controllers
         public async Task<IActionResult> Index()
         {
             var programadores = await _context.Programadores.ToListAsync();
-            return View(programadores);
+            var tecnologias = await _context.Tecnologias.ToListAsync();
+            var planes = await _context.Planes.ToListAsync();
+
+            Coleccion x = new Coleccion();
+            x.Planes = planes;
+            x.Programadores = programadores;
+            x.tecnologias = tecnologias;
+
+            return View(x);
         }
 
         public IActionResult Privacy()
