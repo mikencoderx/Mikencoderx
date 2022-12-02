@@ -1,13 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
     Layout = "_none";
 }
-
-<>
-
-
   <div class="Contenedor animate-bg">
     <div class="Box1" >
       <H1>
@@ -33,6 +27,10 @@
         <span></span>
         Entrar
       </button>
+
+      <a class="text-center pt-5 mt-5 text-decoration-none" asp-controller="Home" asp-action="Index">
+        <h5>Regresar</h5> 
+      </a>
 
 
 
@@ -82,7 +80,7 @@
                     console.log(response)
                     if (response.success == true) {
                         console.log(response)
-                        window.location.href = "/Proyectos/Index";
+                        window.location.href = "/Panel/Index";
                     }
                     else {
                          alert("Usuario o Contraseña Incorrectos");

@@ -1,24 +1,124 @@
-﻿@model IEnumerable<Mikencoderx.Models.Programadores>
+﻿@model Mikencoderx.Models.Coleccion
 @{
-    Layout = "_Lateral";
+    Layout = "_Layout";
     ViewData["Title"] = "Pagina de inicio";
 }
 
-  
+  <div class="container-fluid">
+        <div class="row d-flex align-content-center
+        text-black justify-content-center"
+         style="min-height: 100vh;">
+            <div class="p-5 text-center rounded-5 rounded col-12" id="lavel">
+                <h1 class="pb-3 text-primary">
+                    Te demos la bienvenida a Mikencode.
+                </h1>
+                <h4 class="text-secondary">
+                    "Comunica, Expresa y Optimisa tus Ideas"
+                </h4>
+                <a href="" class="text-black h1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                      </svg>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <h1 class="text-center text-light bg-primary p-3">
+                Conoce nuestros programadores
+            </h1>
 
-        <link href="~/css/Iniciooo.css" rel="stylesheet" />
+            <div class="col-12 mt-5 d-flex flex-row align-items-center justify-content-center" style="min-height: 60vh;">
+                @if(Model.Programadores.Count() > 0){
 
-        <h1>      Bienvenido   </h1>
+                @foreach (var item in Model.Programadores)
+                {
+                            <div class="col-auto bg-dark p-2 pt-0 m-2 text-light" style="max-width: 15rem;">
+                                <div class="imagen animate" style="background-size: 100% auto; background-image: url(@item.URLFoto);
+                                 height: 20rem;">
+                                </div>
+                                <h4>
+                            @item.Nombre
+                                </h4>
+                                <h6 class="text-secondary">
+                            @item.Descrpcion
+                                </h6>
+                            </div>
+                }
+                }else{
+                    <h1>
+                        No hay programadores
+                    </h1>
+                }
+            </div>
+        </div>
 
-        <button  href="#" class='buttonP1 button1'> Planes      
-           
-          </button>
-         
+        <div class="row mt-5">
+            <h1 class="text-center text-light bg-morado p-3">
+                Conoce nuestras Tecnologias
+            </h1>
+            <div class="col-12 mt-5 d-flex flex-row align-items-center justify-content-center" style="min-height: 60vh;">
+            @if (Model.tecnologias.Count() > 0)
+            {
 
-          <button  href="#" class='buttonP2 button2'> Tecnologias
-           
-        </button>  
+                @foreach (var item in Model.tecnologias)
+                {
+                    <div class="col-auto bg-dark p-2 m-2 text-light text-center" style="max-width: 15rem;">
+                        <div class="imagen animate" style="background-image: url(@item.URLFoto);
+                        min-width: 10rem; max-width: 2rem; height: 10rem;">
+                        </div>
+                        <h4>
+                            @item.Nombre
+                        </h4>
+                    </div>
+                }
+            }
+            else
+            {
+                        <h1>
+                            No hay Tecnologias
+                        </h1>
+            }
+            </div>
+        </div>
 
+
+        <div class="row">
+            <h1 class="text-center text-light bg-primary p-3">
+                Conoce nuestros planes
+            </h1>
+            <div class="col-12 mt-5 d-flex flex-row align-items-center justify-content-center" style="min-height: 60vh;">
+            @if (Model.Planes.Count() > 0)
+            {
+                @foreach (var item in Model.Planes)
+                {
+                    <div class="col-auto p-2 m-2 text-black text-center" style="max-width: 15rem;">
+                        <h5 class="bg-secondary p-2 text-light">
+                            @item.Tipo
+                        </h5>
+                        <div class="d-flex flex-column justify-content-center align-content-center" style="height:10rem;">
+                                    <h6>
+                                    Con el coste de @item.Cantidad
+                                </h6>
+                                <h6>
+                                    Por @item.dias dias
+                                </h6>
+                        </div>
+                        
+                    </div>
+                }
+            }
+            else
+            {
+                        <h1>
+                            No hay Planes
+                        </h1>
+            }
+                
+            </div>
+        </div>
+
+    </div>
           
 
 

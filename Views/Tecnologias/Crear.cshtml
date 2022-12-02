@@ -1,0 +1,43 @@
+﻿@model Mikencoderx.Models.Tecnologias
+@{
+    Layout = "_Lateral";
+    ViewData["Title"] = "Crear Tecnologia";
+}
+
+            <div class="container ps-5 pt-5">
+                <div class="row justify-content-center mt-5 mb-5">
+                    <form asp-action="CrearTecnologia" method="post" class="col-md-5 col-12">
+                        <div class="col-12 mt-5 mb-2">
+                            <h1>
+                    @ViewData["Title"]
+                            </h1>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Nombre
+                            </h5>
+                            <input asp-for="Nombre" type="text" class="form-control" required 
+                            placeholder="Nombre">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Url Foto
+                            </h5>
+                            <input asp-for="URLFoto" type="text" class="form-control" required 
+                            placeholder="URL Foto">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <a asp-action="Index"
+                            class="link link-primary text-decoration-none text-primary
+                            text-opacity-75 me-5">
+                                Regresar</a>
+
+                            <button type="submit" class="btn btn-primary">
+                                Guardar
+                            </button>                    
+                        </div>
+                </form>
+            </div>
+        </div>

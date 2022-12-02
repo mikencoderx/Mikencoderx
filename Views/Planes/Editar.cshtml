@@ -1,0 +1,53 @@
+﻿@inject IHttpContextAccessor _Acess
+@model Mikencoderx.Models.Planes
+@{
+    Layout = "_Lateral";
+    ViewData["Title"] = "Crear Plan de venta";
+}
+
+            <div class="container ps-5 pt-5">
+                <div class="row justify-content-center mt-5 mb-5">
+                    <form asp-action="EditarPlan" method="post" class="col-md-5 col-12">
+                        <div class="col-12 mt-5 mb-2">
+                            <h1>
+                                @ViewData["Title"]
+                            </h1>
+                        </div>
+                        <input type="hidden" asp-for="PkPlanes"/>
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Nombre y tipo
+                            </h5>
+                            <input asp-for="Tipo" type="text" class="form-control" required 
+                            placeholder="Example-mensual">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Costo 
+                            </h5>
+                            <input asp-for="Cantidad" type="text" class="form-control" required 
+                            placeholder="$$$">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <h5 class="text-secondary">
+                                Dias de duracion
+                            </h5>
+                            <input asp-for="dias" type="number" class="form-control" required 
+                            placeholder="15">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <a asp-action="Index"
+                            class="link link-primary text-decoration-none text-primary
+                            text-opacity-75 me-5">
+                                Regresar</a>
+
+                            <button type="submit" class="btn btn-primary">
+                                Guardar
+                            </button>                    
+                        </div>
+                </form>
+            </div>
+        </div>
