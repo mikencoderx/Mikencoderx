@@ -14,7 +14,11 @@
 .imagen {
     background-repeat: no-repeat;
     background-position: center;
-    background-size: auto 100%;
+    background-size: 100% auto;
+}
+
+.table tbody{
+    vertical-align: middle;
 }
 
 @media screen and (max-width: 70rem) {

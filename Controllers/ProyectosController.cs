@@ -11,7 +11,7 @@ namespace Mikencoderx.Controllers
 {
     public class ProyectosController : Controller
     {
-        SqlConnection connect = new SqlConnection("Data Source = DESKTOP-969CBKO; initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
+        SqlConnection connect = new SqlConnection("Data Source = DESKTOP-FSE1RT4; initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
         private readonly IHttpContextAccessor _Acess;
         private readonly AppContext _context;
         public ProyectosController(AppContext context, IHttpContextAccessor acess)

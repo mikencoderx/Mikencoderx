@@ -29,7 +29,7 @@ namespace Mikencoderx.Controllers
             }
             //no eliminar
 
-            if (TempData.Count() >0 )
+            if (TempData["sms"] != null )
             {
                 ViewBag.sms = TempData["sms"].ToString();
             }
@@ -70,29 +70,6 @@ namespace Mikencoderx.Controllers
                 programador = request;
 
                 _context.Programadores.Add(programador);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
-            }
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CrearMembresias(Membresias request)
-        {
-            //comprobacion de que el usuario este logeado -|
-            if (_Acess.HttpContext.Session.GetString("Rol") == null)
-            {
-                return Redirect("~/LogginContraller/Index");
-            }
-            //no eliminar
-
-            if (request != null)
-            {
-                Membresias programador = new Membresias();
-                programador = request;
-
-                _context.Membresias.Add(programador);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
