@@ -29,7 +29,7 @@
                             <h5 class="text-secondary">
                                 Telefono
                             </h5>
-                            <input asp-for="Telefono" type="text" class="form-control" required 
+                            <input asp-for="Telefono" type="tel" class="form-control" required 
                             placeholder="Telefono">
                         </div>
                         <div class="col-12 mt-3">
@@ -53,3 +53,13 @@
                     </form>
                 </div>
             </div>
+ <script>
+        var texto ="Clientes"
+        var a=document.getElementById(texto);
+        var b=document.getElementById(texto+"-b");
+        var c=document.getElementById(texto+"-a");
+
+        a.classList.add("bg-primary");
+        b.classList.remove("text-secondary");
+        c.classList.remove("p-1")
+    </script>

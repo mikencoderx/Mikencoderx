@@ -1,67 +1,88 @@
-﻿#contenido {
-    width: 100%;
-    height: 100vh;
-    margin: 40px;
-    overflow-x: auto;
-    padding: 0;
-    margin: 0;
-}
-
-#boton {
-    display: none;
-}
-
-.imagen {
+﻿.imagen {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% auto;
 }
 
-@media screen and (max-width: 70rem) {
-    #menu.active:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100%;
-        background: #000;
-        opacity: 0.5;
-        z-index: -1;
-    }
+#contenido {
+    width: 100vw;
+    height: 100vh;
+    margin: 40px;
+    overflow-x: auto;
+    padding: 0;
+    margin: 0;
+    transition: 1s;
+}
 
-    #menu {
-        position: absolute;
+
+#contenido.active {
+    margin-left: 15rem;
+    transition: 1s;
+}
+
+#contenido::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0;
+    content: '';
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    clip-path: inset(0 100% 0 0);
+    transition: 1s;
+}
+
+#contenido.active::after {
+    transition: 1s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.5;
+    content: '';
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    clip-path: inset(0 0 0 0);
+}
+
+#menu {
+    width: 15rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    clip-path: inset(0 100% 0 0);
+    transition: 1s;
+}
+
+    #menu.active {
+        position: fixed;
         top: 0;
         left: 0;
         z-index: 100;
         background: #fff;
-        display: none;
+        display: block;
+        margin-left: 0;
+        clip-path: inset(0 0 0 0);
+        transition: 1s;
     }
 
-        #menu.active {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            background: #fff;
-            display: block;
-        }
+@media screen and (max-width: 70rem) {
 
     #contenido {
-        margin: 0px;
+        width: 100vw;
+        height: 100vh;
+        margin: 40px;
+        overflow-x: auto;
+        padding: 0;
+        margin: 0;
+        transition: 1s;
     }
 
-    #boton.active {
-        top: 5px;
-        right: 5px;
-        z-index: 200;
-    }
-
-    #boton {
-        display: block;
-        top: 5px;
-        right: 5px;
-        z-index: 200;
-    }
+        #contenido.active {
+            margin: 0;
+        }
 }
