@@ -23,17 +23,17 @@
         <div id="seccion1">
         </div>
 
-        <div class="container-fluid d-flex">
+        <div class="container-fluid">
             <div class="row justify-content-center align-items-center" 
             style="min-height: 100vh;" id="imagen_1">
 
-            <div class="col-md-7 text-center">
-                <div class="texto position-relative">
+            <div class="col-md-7">
+                <div class="texto text-center">
                     <h6>
                         - Sobre nosotros
                     </h6>
                     <h1>
-                        Realizamos paginas web para gente creativa
+                        Realizamos páginas web para gente creativa
                         que buscan aprovechar las tecnologías actuales
                     </h1>
                 </div>
@@ -62,7 +62,7 @@
                     style="width: 100%; height: 20rem; background-image: url(img/targetta.jpg);">
                     </div>
                     <h5 class="p-2">
-                        Targeta web</h5>
+                        Tarjeta web</h5>
                 </div>
                 <div class="col-md-5 text-center">
                     <div class="fondo bg-danger"
@@ -153,8 +153,8 @@
         }
         else
         {
-                                <h1>
-                                    No hay Tecnologias
+                                <h1 class="text-center">
+                                    No hay Tecnologías
                                 </h1>
         }
             </div>
@@ -167,7 +167,7 @@
             <div class="row justify-content-center align-items-center p-5">
                 <div class="col-md-7 text-center">
                     <h6>
-                        - Contactanos
+                        - Contáctanos
                     </h6>
                     <h1>
                         Lineas de contacto
@@ -198,7 +198,16 @@
         </div>
           
 
+         <script>
+        var texto ="eyes"
+        var a=document.getElementById(texto);
+        var b=document.getElementById(texto+"-b");
+        var c=document.getElementById(texto+"-a");
 
+        a.classList.add("bg-primary");
+        b.classList.remove("text-secondary");
+        c.classList.remove("p-1")
+    </script>
 
 
 

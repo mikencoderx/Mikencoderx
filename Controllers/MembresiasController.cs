@@ -13,7 +13,7 @@ namespace Mikencoderx.Controllers
     public class MembresiasController : Controller
     {
         private readonly IHttpContextAccessor _Acess;
-        SqlConnection connect = new SqlConnection("Data Source = DESKTOP-FSE1RT4; initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
+        SqlConnection connect = new SqlConnection("Data Source = DESKTOP-RLKCHTG; initial catalog = Mikencoderx; integrated security = true; Trusted_Connection=True;");
         private readonly AppContext _Context;
         public MembresiasController(AppContext context, IHttpContextAccessor acess)
         {

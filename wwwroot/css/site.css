@@ -1,10 +1,5 @@
 
 
-.visualizador {
-    width: 100%;
-    overflow: hidden;
-}
-
 #imagen_1 div {
     opacity: 0;
     transition: 2s;
