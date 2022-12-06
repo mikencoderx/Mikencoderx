@@ -1,30 +1,174 @@
-.animate{
+
+
+.visualizador {
+    width: 100%;
+    overflow: hidden;
+}
+
+#imagen_1 div {
+    opacity: 0;
+    transition: 2s;
+}
+
+#imagen_1.visible div {
+    opacity: 1;
+    transition: 2s;
+}
+
+#imagen_2 div {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: 2s;
+}
+
+#imagen_2.visible div {
+    opacity: 1;
+    transform: translateX(0%);
+    transition: 2s;
+}
+
+#imagen_3 div {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: 1.5s;
+}
+
+#imagen_3.visible div {
+    opacity: 1;
+    transform: translateX(0%);
+    transition: 2s;
+}
+
+#imagen_4 div {
+    transform: scale(0);
+    transition: 1.5s;
+}
+
+#imagen_4.visible div {
+    transform: scale(1);
+    transition: 2s;
+}
+
+#imagen_5 div {
+    opacity: 0;
+    transition: 1.5s;
+}
+
+#imagen_5.visible div {
+    opacity: 01;
+    transition: 2s;
+}
+
+
+.cuadro {
+    clip-path: inset(100% 0 0 0);
     transition: 1s;
 }
 
-html {
-  font-size: 14px;
+.fondo:hover .cuadro {
+    clip-path: inset(0 0 0 0);
+    transition: 1s;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.fondo {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.imagen {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: end;
+    background-size: 100% auto;
 }
 
-body {
-  margin-bottom: 60px;
+#menu {
+    width: 15rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    clip-path: inset(0 62% 100% 0);
+    transition: 1s;
 }
 
-.figura-d {
-    clip-path: polygon(0 0, 0% 100%, 100% 0);
+    #menu.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background: #fff;
+        display: block;
+        margin-left: 0;
+        clip-path: inset(0 0 0 0);
+        transition: 1s;
+    }
+
+.bg-negro {
+    background: #000;
 }
 
-.figura-z {
-    clip-path: polygon(0 100%, 100% 100%, 100% 0);
+.border-blanco:after {
+    border: #000 solid 3px;
+    position: absolute;
+    border-radius: 100%;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 120%;
+    z-index: -1;
+}
+
+.border-blanco {
+    animation: colores 10s infinite;
+    position: relative;
+    border: #fff solid 3px;
+    border-radius: 100%;
+    z-index: 2;
+}
+
+@keyframes colores {
+    0% {
+        border-color: rgb(255, 255, 255);
+    }
+
+    40% {
+        border-color: rgb(255, 255, 255);
+    }
+
+    50% {
+        border-color: rgb(19, 188, 200);
+    }
+
+    60% {
+        border-color: rgb(200, 194, 19);
+    }
+
+    70% {
+        border-color: rgb(17, 255, 124);
+    }
+
+    80% {
+        border-color: rgb(8, 8, 255);
+    }
+
+    100% {
+        border-color: rgb(255, 255, 255);
+    }
+}
+
+.text-blanco {
+    color: #fff;
+}
+
+@media screen and (max-width: 80rem) {
+    .imagen {
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: end;
+        background-size: auto 100%;
+    }
 }

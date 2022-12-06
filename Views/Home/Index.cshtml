@@ -4,121 +4,198 @@
     ViewData["Title"] = "Pagina de inicio";
 }
 
-  <div class="container-fluid">
-        <div class="row d-flex align-content-center
-        text-black justify-content-center"
-         style="min-height: 100vh;">
-            <div class="p-5 text-center rounded-5 rounded col-12" id="lavel">
-                <h1 class="pb-3 text-primary">
-                    Te demos la bienvenida a Mikencode.
-                </h1>
-                <h4 class="text-secondary">
-                    "Comunica, Expresa y Optimisa tus Ideas"
-                </h4>
-                <a href="" class="text-black h1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                        <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                      </svg>
+
+<div class="container-fluid"
+        style="height: 100vh;">
+
+        <div class="row justify-content-center align-items-center imagen" 
+            style="height: 100%; background-image: url(img/03.jpg);">
+                <div class="col-auto text-center text-light">
+                    <h6>
+                        Comunidad estudiantil UPQROO
+                    </h6>
+                    <h1>
+                        Bienvenido a Mikencoderx
+                    </h1>
+                </div>
+            </div>
+
+        <div id="seccion1">
+        </div>
+
+        <div class="container-fluid d-flex">
+            <div class="row justify-content-center align-items-center" 
+            style="min-height: 100vh;" id="imagen_1">
+
+            <div class="col-md-7 text-center">
+                <div class="texto position-relative">
+                    <h6>
+                        - Sobre nosotros
+                    </h6>
+                    <h1>
+                        Realizamos paginas web para gente creativa
+                        que buscan aprovechar las tecnologías actuales
+                    </h1>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+        <div id="seccion2">
+        </div>
+
+        <div id="imagen_2" class="overflow-hidden w-100 container-fluid">
+            <div class="row justify-content-center align-items-center p-5">
+                <div class="col-md-7 text-center">
+                    <h6>
+                        - Sobre nosotros
+                    </h6>
+                    <h1>
+                        Nuestros servicios
+                    </h1>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center p-5">
+                <div class="col-md-5 text-center">
+                    <div class="fondo bg-danger"
+                    style="width: 100%; height: 20rem; background-image: url(img/targetta.jpg);">
+                    </div>
+                    <h5 class="p-2">
+                        Targeta web</h5>
+                </div>
+                <div class="col-md-5 text-center">
+                    <div class="fondo bg-danger"
+                    style="height: 20rem; background-image: url(img/menu.jfif);">
+                    </div>
+                    <h5 class="p-2">
+                        Menu web</h5>
+                </div>  
+            </div>
+        </div>
+
+        <div id="seccion3">
+        </div>
+
+        <div id="imagen_3" class="overflow-hidden w-100 container-fluid">
+            <div class="row justify-content-center align-items-center p-5">
+                <div class="col-md-7 text-center">
+                    <h6>
+                        - Nuestra comunidad
+                    </h6>
+                    <h1>
+                        Nuestros Programadores
+                    </h1>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center p-5">
+        @if (Model.Programadores.Count() > 0)
+        {
+
+            @foreach (var item in Model.Programadores)
+            {
+                <div class="col-md-5 text-center">
+                    <div class="overflow-hidden fondo bg-black d-flex flex-column
+                    justify-content-end"
+                    style="width: 100%; height: 20rem; background-image: url(@item.URLFoto);">
+                        <div class="cuadro bg-black bg-opacity-75 text-light p-1">
+                            <h6>
+                                @item.Descrpcion
+                            </h6>
+                        </div>
+                    </div>
+                    <h5 class="p-2">
+                    @item.Nombre
+                    </h5>
+                </div>
+            }
+        }
+        else
+        {
+                        <h1>
+                            No hay programadores
+                        </h1>
+        }
+            </div>
+        </div>
+
+        <div id="seccion4">
+        </div>
+
+        <div id="imagen_4" class="overflow-hidden w-100 container-fluid">
+            <div class="row justify-content-center align-items-center p-5">
+                <div class="col-md-7 text-center">
+                    <h6>
+                        - Nuestras tecnologias
+                    </h6>
+                    <h1>
+                        Nuestros conocimientos
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center p-5">
+        @if (Model.tecnologias.Count() > 0)
+        {
+
+            @foreach (var item in Model.tecnologias)
+            {
+            <div class="col-md-5 text-center">
+                <div class="overflow-hidden fondo bg-black d-flex flex-column
+                justify-content-end"
+                style="width: 100%; height: 20rem; background-image: url(@item.URLFoto);">
+                </div>
+                <h5 class="p-2">
+                    @item.Nombre
+                </h5>
+            </div>
+            }
+        }
+        else
+        {
+                                <h1>
+                                    No hay Tecnologias
+                                </h1>
+        }
+            </div>
+        </div>
+
+        <div id="seccion5">
+        </div>
+
+        <div id="imagen_5" class="overflow-hidden w-100 container-fluid">
+            <div class="row justify-content-center align-items-center p-5">
+                <div class="col-md-7 text-center">
+                    <h6>
+                        - Contactanos
+                    </h6>
+                    <h1>
+                        Lineas de contacto
+                    </h1>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center p-5">
+                <a href="https://api.whatsapp.com/send?phone=9984173575" class="col-md-5 text-center">
+                    <div class="overflow-hidden fondo bg-primary d-flex flex-column
+                    justify-content-end"
+                    style="width: 100%; height: 20rem; background-image: url(img/whatsapp.jfif);">
+                    </div>
+                    <h5 class="p-2">
+                    Whatsapp</h5>
+                </a>
+                <a href="mailto:mikencoderx@gmail.com" class="col-md-5 text-center">
+                    <div class="overflow-hidden fondo bg-primary d-flex flex-column
+                    justify-content-end"
+                    style="width: 100%; height: 20rem; background-image: url(img/correo.jfif);">
+                    </div>
+                    <h5 class="p-2">
+                        mikencoderx@gmail.com</h5>
                 </a>
             </div>
         </div>
-        <div class="row">
-            <h1 class="text-center text-light bg-primary p-3">
-                Conoce nuestros programadores
-            </h1>
-
-            <div class="col-12 mt-5 d-flex flex-row align-items-center justify-content-center" style="min-height: 60vh;">
-                @if(Model.Programadores.Count() > 0){
-
-                @foreach (var item in Model.Programadores)
-                {
-                            <div class="col-auto bg-dark p-2 pt-0 m-2 text-light" style="max-width: 15rem;">
-                                <div class="imagen animate" style="background-size: 100% auto; background-image: url(@item.URLFoto);
-                                 height: 20rem;">
-                                </div>
-                                <h4>
-                            @item.Nombre
-                                </h4>
-                                <h6 class="text-secondary">
-                            @item.Descrpcion
-                                </h6>
-                            </div>
-                }
-                }else{
-                    <h1>
-                        No hay programadores
-                    </h1>
-                }
-            </div>
+        <div class="ratio ratio-21x9 container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119056.84530002167!2d-87.10501916654796!3d21.17123720149992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8870aff956f2fb21%3A0xcf7df4e92eb69275!2sMikencoderx!5e0!3m2!1ses!2smx!4v1670289799686!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-
-        <div class="row mt-5">
-            <h1 class="text-center text-light bg-morado p-3">
-                Conoce nuestras Tecnologias
-            </h1>
-            <div class="col-12 mt-5 d-flex flex-row align-items-center justify-content-center" style="min-height: 60vh;">
-            @if (Model.tecnologias.Count() > 0)
-            {
-
-                @foreach (var item in Model.tecnologias)
-                {
-                    <div class="col-auto bg-dark p-2 m-2 text-light text-center" style="max-width: 15rem;">
-                        <div class="imagen animate" style="background-image: url(@item.URLFoto);
-                        min-width: 10rem; max-width: 2rem; height: 10rem;">
-                        </div>
-                        <h4>
-                            @item.Nombre
-                        </h4>
-                    </div>
-                }
-            }
-            else
-            {
-                        <h1>
-                            No hay Tecnologias
-                        </h1>
-            }
-            </div>
-        </div>
-
-
-        <div class="row">
-            <h1 class="text-center text-light bg-primary p-3">
-                Conoce nuestros planes
-            </h1>
-            <div class="col-12 mt-5 d-flex flex-row align-items-center justify-content-center" style="min-height: 60vh;">
-            @if (Model.Planes.Count() > 0)
-            {
-                @foreach (var item in Model.Planes)
-                {
-                    <div class="col-auto p-2 m-2 text-black text-center" style="max-width: 15rem;">
-                        <h5 class="bg-secondary p-2 text-light">
-                            @item.Tipo
-                        </h5>
-                        <div class="d-flex flex-column justify-content-center align-content-center" style="height:10rem;">
-                                    <h6>
-                                    Con el coste de @item.Cantidad
-                                </h6>
-                                <h6>
-                                    Por @item.dias dias
-                                </h6>
-                        </div>
-                        
-                    </div>
-                }
-            }
-            else
-            {
-                        <h1>
-                            No hay Planes
-                        </h1>
-            }
-                
-            </div>
-        </div>
-
-    </div>
           
 
 
